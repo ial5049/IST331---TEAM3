@@ -1,0 +1,1199 @@
+# Simfast and ATCoach Aircraft Model File
+#----------------------------------------------------------------------
+#
+#Compiled  By: Patrick Scanlan, AJI-2230 Technical Training Simulation Office 858-537-5858
+#
+# Version Date 10/02/2018
+#  Only change is to modify air carrier turn rates to 2.5 degrees. Real world Air carriers never exceed 25% of bank. 
+#
+#
+
+# Version Date 03/28/2018
+# adjusted DH8B, DH8C, and DH8D to increase cruising speed to 240kts.
+# 
+# Added Lancair MAKO,  Considered but did not add C919 and MC23 at this time, pending usage in US territories, both aircraft are only in development.
+#
+#Version Date 10/25/2017
+#Addition of B58T, BD4,C55B, C700, T182, C82T, CL35, DHC7, EXPR, VF35, F50, FA8X, G21T, GA5C, GLSP,
+# L159, M600, Q1, Q9, Q4, MG17, A19N, A20N, A21N, B37M, B38M, B39M, A339,S97,P06T, TWST,  PUSH, RV14, SF50, TWEN
+# Version Date 08/02/2017
+# Corrected DA40 climb rate to 1500' was climbing too slowly 
+# Version Date 07/28/2017
+# corrects stall speeds for Helicopters to 0 Kts per request by Raytheon
+# Version Date 05/05/2017 
+#    new aircraft weighting was based on actual traffic survey.
+#    update adds defunct category to use with older scenarios.  Simfast will not include defunct types for new scenarios
+#    Adding types  DC6,EVOT,A189,A35K,A359, AT46,B429,BKUT,EC25,EC55,EUFI,G280,FBA2,LNP4,SU95,A148,TBM9
+# NOTE: RECAT STATUS IN REMARKS SECTION IS NO LONGER USED IN SIMFAST, RECAT CATEGORIES ARE CONTROLLED BY STARS ADAPT ONLY
+# Version Date 09/28/2016
+# corrected Simfast data for E75L and E75S to show correct RECAT status in Simfast only.
+# Version Date 09/23/2016
+#  corrected a typo which caused BE50 data load failure in Simfast. No other changes.
+# Version Date: 08/23/2016
+# added E35L  Embraer Legacy, Legacy 600, 650 
+#Removed types HXA, HXB, and HXC as they are no longer listed in 7110.65. ICAO doc 8643  or FAA order 7360.1 are now  the only sources of aircraft type data
+#
+#Simfast AircraftAlias.txt will replace HXA,HXB and HXC with ZZZZ as per FAAO 7360.1
+#
+#
+#
+# 28 Jul 16 Added following types to table to reflect ATPA changes
+#
+#
+#REMOVALS ASHP,B731,B78X,F18,TRIN
+#
+#ADD AR50,AR5T,AR65,AR6T,B525,C25M,C68A,CO50,DA62,E75L,E75S
+#    F18H,F18S,GP1,H160,KR30,MRJ7,MRJ9,PIT4,SASH,SLG2,SLG4 
+#    STRK,TW1R,U15
+# Simfast users will get automatic conversion of F18 Type to F18H by default. 
+#
+# All changes here reflect the most current changes to  ATPA table. Obscure or rare and defunct aircraft will not be added at this time. 
+#ATPA table contains over 2800 aircraft types, that table contains many aircraft types which would not participate in controlled ATC ops.
+#-------------------------------------------------------------------------------------------------------------------------------------
+#
+# 24 Jun 16 Minor changes and annual review.
+#increased Acceleration rates for Jets and some high performance turboprops, this mitigates the 
+#default starting speed in ATCoach for all departure props 85 kts increasing to DP speed or Max velocity
+#                           all departure jets  155 kts  
+# adds the following special designators found in FAA Order 7360.1 as aircraft types
+#2-3. Special Designators. If needed, use these designators for the following aircraft, anticpating use for display of UAVs or ADS-B equipment:
+#a. BALL Balloon.
+#b. GLID  Glider/sailplane.
+#c. GYRO  Micro-/ultra-light gyrocopter.
+#d. SHIP  Airship.
+#g. UHEL  Micro-/ ultra-light helicopter.
+#h. ULAC  Micro-/ultra-light aircraft.
+#i. UOPH  Micro-/ultra-light optionally piloted helicopter.
+#j. UOPL  Micro-/ultra-light optionally piloted aircraft.
+#k. URPH  Micro-/ultra-light remotely piloted helicopter.
+#l. URPL  Micro-/ultra-light remotely piloted aircraft.
+#m. ZZZZ  Aircraft type not (yet) assigned a designator, with a description of the type in Item 18 (Other Information) of the ICAO flight plan or Remarks of a NAS flight plan.
+#
+#
+# 26 Jun 15 EXTENSIVE changes :
+#
+# Climb and descent rates  changed (reduced in most cases) to "normal" operating climb and descent
+#
+# acc. rate, dec. rate and approach speeds. changed to 
+#  improve speeds after FAF. 
+#
+# 12 Dec 14 additions
+# A158, AT2P, B78X, BCS1, BCS3, BT36, C240, E545, E550, K209, 
+# LJ70, LJ75, LJ85, M346, P28S, P28U, PC24, S22T, SAM, T206, T210, TB20, TB21, X3, XA41, Y12F, MOR2  
+# Also includes numerous edits by Denver Tracon training dept. to improve accuracy for aircraft performance 
+##
+#WARNING  !!! DO NOT MODIFY OR ADD ANY REMARKS TO THE NEXT 8 LINES, OTHERWISE ATCOACH WILL NOT LOAD ANY SCENARIOS !!!!
+##
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB  
+# For Test only------------------------------------------------------------------------------------------
+MSW1   L     J      4     1000    4000     4        10        10         100           0         99000     900      8000    
+MSW2   L     J      4     2700    4000     4        10        10         100           0         99000     900      8000    
+MSW3   L     J      4     6000    4000     4        10        10         100           0         99000     900      8000   
+GEN1   L     J      4     4000    4000     4        10        10         100           0         99000     900      8000    
+GEN2   L     J      4     6000    4000     4        100       10         100           0         99000     900      18000   
+TRKP   L     J      4     10000   6000     4        72.5      28.6       90            0         99000     800      13000   
+HIGE   L     J      4     10000   6000     6        10        28.6       90            0         99000     800      13000   
+TEST   L     J      4     4000    4000     10       10        10         100           0         99000     900      8000    
+#
+#
+#
+# PVER TESTING INFORMATION:
+# FIVE TYPES ARE NEEDED FOR PVER TESTING TO VALIDATE STARS. DO NOT MODIFY THE FOLLOWING TYPES
+#
+# C172, C210, B737, B727,B747, DC9.  B727, B747 and DC9 are no longer valid ICAO types.
+# This may cause TPA or RECAT issues in PVER now or in future versions of STARS software.
+# 
+# DO NOT REMOVE NEXT THREE TYPES FOR PVER TESTING B747 B727 AND DC9 these are the actual table entries
+#
+B747   H     J      3     3000    3000     3         1.5       1.0       130         107         45000     499      3250
+B727   L     J      3     3000    3500     3         1.5       1.0       130         104         36000     500      3900    # Do Not Modify or remove
+DC9    L     J      3     3000    3000     3         1.5       1.0       130         120         31000     500      3250    # Do Not Modify or remove
+#
+# The next three aircraft are ICAO Correct types  and should be okay as they are, 
+# If needed to pass PVER due to Performance differences 
+#  uncomment these, and comment out the same aircraft found further down in the table. 
+# 
+#  CAUTION: PVER WILL FAIL IF C172 is changed to a realistic max velocity. 
+#
+# PVER Test is hard coded to use 160 KTS for Conflict alert Assertions.  DO NOT CHANGE C172 MAX.VEL !
+#C172   S     P      1      650    1000     3         1.0       0.9        85          50         16800     161       845   # SAMPLE Line, actual is in the table
+#old  table data follows for C172, the actual table data matches the above line to ensure PVER test will work.
+#C172   S     P      1     650     1000     3        1         0.9        85            50        15000     122      845    # 1,25,1,0,90,110,122,122,Cessna Skyhawk 172  T-41  Cutlass,F 
+#Next two types are in the table, do not appear to impact the PVER Test as they are currently saved.
+#C210   S     P      1      900    1000     3         1.0       0.9       110          65         27000     206      1170 
+#C210   S     P      1     900     1000     3        1         0.9        110           65        15000     130      1000   # 1,4.4,2,0,90,120,130,130,Cessna Centurion 210,F 
+#B737   L     J      3     4000    4000     3         1.5       1.0       130         100         35000     462      3250 
+#B737   L     J      3     4000    4000     3        1.5       1          130           110       35000     462      3250    # 7,0,6,2,210,250,450,250,Boeing 737-700  BBJ   C-40,D
+#------------------------------------------------------------------------------------------------------------------------
+# 
+#  TABLE BEGINS HERE
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+#  Invalid types which are no longer valid, retained only for legacy scenarios, Simfast 1.5.188 will no longer generate these
+HXA    S     P      1     750     750      3        1.5       1          130           80        15000     130      1000   # 1,0.1,1,0,70,90,99,99,Experimental (not ICAO) <100Kts,F 
+HXB    S     P      1     1000    1000     3        1.5       1          130           80        15000     130      1000   # 1,0.1,1,0,80,120,150,150,Experimental (not ICAO) <200Kts,F 
+HXC    S     P      1     1300    1000     2        1         1          90            70        15000     130      1000   # 1,0.1,2,0,110,160,210,210,Experimental (not ICAO) >200Kts,F 
+TRIN   S     P      1     1200    1000     3        1.5       1          130           85        15000     130      1000   # 1,0.1,1,0,250,250,290,250,Socata Trinidad TB-20(not ICAO),F 
+ASHP   S     P      3     500     500      2        0.5       0.5        40            20        12000     50       500    # 2,0.1,1,1,30,40,40,40,Airship  (not ICAO),F 
+F18    L     J      3     8000    6000     3        2.5       1          130           120       41000     500      3250   # 9,0.1,5,2,250,250,500,250,McDonnell Douglas F-18A Hornet (Not ICAO),E 
+# GA Single engine------------------------------------------------------------------------------------------
+AA1    S     P      1     850     1250     3        1         0.5        105           59        15000     120      1000   # 1,0.1,1,0,70,110,120,120,American AA-1 Yankee  Trainer,F 
+AA5    S     P      1     660     1000     3        1         0.5        105           59        15000     120      1000   # 1,0.5,1,0,80,110,120,120,Grumman AA-5 Tiger Cheetah  Traveler,F 
+AC11   S     P      1     1000    1200     3        1         0.5        105           59        16000     130      1000   # 1,0.2,1,0,90,120,130,130,Rockwell Commander 112/114,F 
+ANGL   S     P      1     500     500      3        1         0.5        90            55        15000     120      700    # 1,0.1,1,0,70,120,120,120,ANGEL  44 Angel,F 
+B14A   S     P      1     1030    1030     3        1         0.5        105           59        15000     110      1000   # 1,0.1,1,0,70,100,110,110,BELLANCA  14 Cruisair,F 
+B14C   S     P      1     1500    1500     3        1         0.5        110           70        15000     110      1000   # 1,0.1,1,0,70,100,110,110,BELLANCA  14 Bellanca 260B,F 
+B209   S     P      1     1100    1100     3        1         0.4        120           97        15000     110      1000   # 1,0.1,1,0,70,100,110,110,BOLKOW  BO-209 Monsun,F 
+BASS   S     P      2     1200    1300     3        1         0.4        120           85        15000     110      1000   # 1,0.1,1,0,70,100,110,110,BEAGLE  B-206,F 
+BDOG   S     P      1     600     800      3        1         0.5        90            75        15000     110      1200   # 1,0.1,1,0,70,100,110,110,BEAGLE  B-125 Bulldog,F 
+BE19   S     P      1     680     680      3        1         0.9	 85            55        15000     130      1000   # 1,0.1,1,0,70,120,130,130,Beech 19 Sport,F 
+BE23   S     P      1     740     800      3        1         0.4        95            65        13000     130      1000   # 1,0.2,1,0,90,120,130,130,Beech 23  Musketeer  Sundowner,F 
+BE24   S     P      1     1000    1000     3        1         0.5        100           69        15000     120      1205   # 1,0.0,1,0,80,110,120,120,Beech 24 Sierra,F 
+BE33   S     P      1     1000    1000     3        1         0.4        100           85        15000     130      1200   # 1,2.0,1,0,90,120,130,130,Beech Debonair 33,F 
+BE35   S     P      1     1200    1200     3        1         0.4        100           75        18000     140      1500   # 1,2.4,1,0,90,120,140,140,Beech Bonanza 35,F 
+BE36   S     P      1     900     1100     3        1         0.4        100           55        18000     150      1300   # 1,7.9,1,0,90,120,150,150,Beech Bonanza 36,F 
+BE77   S     P      1     750     750      3        1         0.4        90            50        18000     130      1000   # 1,0.0,1,0,90,120,130,130,Beech 77 Skipper,F 
+BKUT   S     P      1     1200    1500     3        1         1          90            80        28000     200      2000   # 1,0.1,1,0,70,110,120,120,Berkut 360/540,F 
+BL17   S     P      1     800     1100     3        1         0.4        100           65        15000     130      1000   # 1,0.2,1,0,90,120,130,130,Bellanca Viking  Super Viking  Turbo Viking,F 
+BL19   S     P      1     1250    1200     3        1         0.4        100           94        15000     110      1000   # 1,0.1,1,0,70,100,110,110,BELLANCA  19 Skyrocket,F 
+BT36   S     P      1     1100    1100     3        1         0.4        105           65        15000     160      1300   # 1,0.1,1,0,90,120,160,160,BEECH/RAYTHEON Bonanza (A36TC/B36TC),F
+C10T   S     P      1     1150    1000     3        1         0.4        105           65        15000     160      1000   # 1,0.1,1,0,100,120,160,160,CESSNA  P210 (turbine),F 
+C150   S     P      1     670     1000     3        1         0.5        70            42        12650     100      871    # 1,0.3,1,0,70,80,100,100,Cessna 150,F 
+C152   S     P      1     715     1000     3        1         0.5        75            43        14700     100      900    # 1,0.2,1,0,70,80,100,100,Cessna 152,F 
+#C172  S     P      1     650     1000     3        1         0.4        85            50        15000     122      845    # Old data which was affecting PVER 
+C172   S     P      1     650     1000     3        1         0.4        90            50        16800     161      845    # 1,19.7,1,0,90,110,161,161,Cessna Skyhawk 172  T-41  Cutlass,F 
+C175   S     P      1     850     1000     3        1         0.5        90            47        15000     120      1000   # 1,0.1,1,0,80,110,120,120,Cessna 175  Skylark,F 
+C177   S     P      1     650     1000     3        1         0.5        90            55        12000     130      1105   # 1,0.3,1,0,90,120,130,130,Cessna Skylane 177,F 
+C182   S     P      1     890     1000     3        1         0.5        95            56        18000     140      1300   # 1,6.9,1,0,90,120,140,140,Cessna Skylane 182,F 
+C205   S     P      1     965     1000     3        1         0.5        95            65        15000     150      1000   # 1,0.1,1,0,90,120,150,150,Cessna 205,F 
+C206   S     P      1     975     1000     3        1         0.5        100           65        17000     160      1000   # 1,1.9,2,0,100,120,160,160,Cessna Stationair 206,F 
+C207   S     P      1     810     1000     3        1         0.5        95            65        20000     150      1000   # 1,0.0,1,0,100,120,150,150,Cessna Stationair 7 8,F 
+C210   S     P      1     900     1000     3        1         0.4        100           65        27000     170      1000   # 1,2.2,2,0,90,120,170,170,Cessna Centurion 210,F 
+C240   S     P      1     1500    1500     3        1.2       1.0        110           80        25000     170      1500   # 1,0.3,1,0,120,130,170,160,CESSNA T240 Corvalis TTx,F 
+C72R   S     P      1     650     1000     3        1         0.5        100           100       15000     130      1000   # 1,0.2,1,0,90,120,130,130,Cessna 172 RG,F 
+C77R   S     P      1     850     1000     3        1         0.5        105           90        15000     140      1000   # 1,0.2,1,0,90,120,140,140,Cessna 177RG   Cardinal RG,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+C82R   S     P      1     890     1000     3        1         0.5        105           80        15000     140      1000   # 1,0.4,1,0,90,120,140,140,Cessna 182RG  Skylane RG,F 
+C82S   S     P      1     890     1000     3        1         0.5        95            56        18000     140      1300   # 1,6.9,1,0,90,120,140,140,Cessna Turbo Skylane C82S,F 
+C82T   S     P      1     890     1000     3        1         0.5        95            56        18000     150      1500   # 1,6.9,1,0,90,120,150,150,Cessna Turbo Skylane RG C82T,F 
+CH10   S     P      1     800     800      3        1.2       1.2        100           80        15000     110      1000   # 1,0.1,1,0,70,100,110,110,Zenith CH-100,F 
+CH2T   S     P      1     780     1000     3        1         0.5        100           48        15000     110      1000   # 1,0.1,1,0,70,100,110,110,CH-2000 Zenith  AMD  CH-2000 Alarus,F 
+CH40   S     P      1     650     1000     3        1         0.5        105           70        15000     110      1000   # 1,0.1,1,0,70,100,110,110,CHAMPION  Lancer,F 
+CH60   S     P      1     780     1000     3        1         0.5        100           63        15000     110      1000   # 1,0.0,1,0,70,100,110,110,ZENITH  CH-601 Zodiac,F 
+CH80   S     P      1     780     1000     3        1         0.5        90            63        15000     130      1000   # 1,0.1,1,0,90,120,130,130,ZENITH  CH-801 Stol,F 
+COL3   S     P      1     800     800      3        1.2       1.2        110           80        15000     170      1000   # 1,0.6,1,0,120,130,170,160,Lancair Columbia 300,F 
+COL4   S     P      1     1500    1500     3        1.2       1.2        110           80        25000     160      1500   # 1,0.9,1,0,120,130,160,160,"Lancair Columbia 400, Cessna 400 Corvalis" F 
+COZY   S     P      1     800     800      3        1.2       1.2        100           80        15000     130      1000   # 1,0.1,1,0,90,120,130,130,Rutan 61 Long-EZ,F 
+CP10   S     P      1     1500    2000     3        1         0.5        90            80        15000     130      1000   # 1,0.1,1,0,90,120,130,130,Mudry Cap 10,F 
+CP23   S     P      1     1500    2000     3        1         0.5        90            80        15000     130      1000   # 1,0.1,1,0,90,120,130,130,Mudry Cap 230,F 
+DA40   S     P      1     900     1200     3        1.2       1.2        80            60        15000     150      1500   # 1,2.4,1,0,90,120,130,130,Diamond Katana  Diamond Star,F 
+DHC1   S     P      1     900     1000     3        1         0.5        130           80        15000     110      1000   # 1,0.1,1,0,90,110,110,110,DE HAVILLAND  Chipmunk,F 
+DHC2   S     P      1     840     1000     3        1         0.5        120           70        15000     130      1391   # 1,0.1,1,0,90,120,130,130,DeHavilland DHC-2  Beaver,F 
+DO27   S     P      1     700     800      3        1         0.5        110           80        15000     160      1000   # 1,0.1,1,0,110,150,160,160,DORNIER  Do-27,F 
+DR30   S     P      1     800     800      3        1.2       1.2        100           80        15000     110      1000   # 1,0.1,1,0,90,100,110,110,Robin DR-300,F 
+DR40   S     P      1     900     1200     3        1.2       1.2        95            60        15000     110      1000   # 1,0.1,1,0,90,100,110,110,Robin DR-400,F 
+DV20   S     P      1     730     1000     3        1         0.5        95            55        15000     110      1000   # 1,0.1,1,0,70,100,110,110,Diamond DV-20 Katana,F 
+E400   S     P      1     1500    1500     3        1         0.5        105           80        25000     190      1500   # 1,0.1,3,1,130,140,190,190,EXTRA  EA-400,F 
+ERCO   S     P      1     630     630      3        1         0.4        90            70        15000     110      1000   # 1,0.1,1,0,90,100,110,110,F-1 Aircoupe,F 
+EVOL   S     P      1     800     800      3        1         0.5        100           80        15000     130      1000   # 1,0.1,1,0,100,120,130,130,Lancair Evolution,F 
+EXPR   S     P      1     800     800      3        1.2       1.2        105           80        15000     150      1000   # 1,0.0,1,0,100,130,150,150,Express90 2000 2000RG,F
+F260   S     P      1     1130    1130     3        1         0.5        100           90        15000     140      1700   # 1,0.1,2,0,90,120,140,140,SIAI-Marchetti SF-260,F 
+F26T   S     P      1     1800    1100     3        1         0.5        105           80        15000     160      1000   # 1,0.1,1,0,100,110,160,160,SIAI-Marchetti SF-260TP,F 
+F8L    S     P      1     650     1000     3        1         0.5        105           90        15000     130      1000   # 1,0.1,1,0,70,100,130,130,Aeromere Falco F-8L,F 
+FBA2   S     P      1     850     1000     3        1         0.5        90            47        15000     110      1000   # 1,0.1,1,0,80,110,110,110,Found Bush Hawk FBA-2,F
+G109   S     P      1     600     600      3        1         0.5        90            60        15000     110      1000   # 1,0.1,1,0,70,100,110,110,Grob Ranger Motor Glider,F 
+G115   S     P      1     1200    1100     3        1         0.5        90            68        15000     110      1000   # 1,0.1,1,0,70,100,110,110,Grob Heron ,F 
+G120   S     P      1     1280    1100     3        1         0.5        90            68        15000     110      1000   # 1,0.0,1,0,90,110,110,110,Grob Snunit ,F 
+G2T1   S     P      1     1000    800      3        1         0.5        100           55        15000     130      1000   # 1,0.1,1,0,90,120,130,130,Great Lakes 2T-1 Sport,F 
+GA8    S     P      1     1600    1500     3        1         0.5        100           80        31000     140      1000   # 1,0.2,2,1,90,130,140,140,Gippsland GA-8 Airvan,F 
+GC1    S     P      1     700     700      3        1.2       1.2        100           85        15000     130      800    # 1,0.1,1,0,100,130,130,130,Temco Swift,F 
+GLAS   S     P      1     800     800      3        1.2       1.2        120           80        15000     150      1000   # 1,0.1,1,0,100,130,150,150,Stoddard- Hamilton Glasair,F 
+GLDR   S     P      1     500     800      3        1.2       1.2        60            40        15000     090      1000   # 1,0.1,1,0,50,40,90,90,Glider,F 
+GLID   S     P      1     500     800      3        1.2       1.2        60            40        15000     090      1000   # 1,0.1,1,0,50,40,90,90,Glider,F 
+GLSP   S     P      1     800     800      3        1.2       1.2        105           80        15000     150      1000   # 1,0.1,1,0,100,130,150,150,New Glastar Sportsman 2+2,F 
+GLST   S     P      1     800     800      3        1.2       1.2        105           80        15000     150      1000   # 1,0.1,1,0,100,130,150,150,Stoddard- Hamilton GlasStar,F 
+I103   S     P      1     1800    1300     2        1         0.5        100           80        15000     130      1000   # 1,0.1,1,0,80,120,130,130,Ilyushin IL-103,F 
+L90    S     P      1     700     700      3        1         0.5        100           80        15000     130      1000   # 1,0.1,1,0,80,110,130,130,Valmet Redigo ,F 
+LARK   S     P      1     800     800      3        1.2       1.2        100           80        15000     110      1000   # 1,0.1,1,0,90,110,110,110,Rockwell 100 Lark Commander,F 
+LEG2   S     P      1     800     800      3        1.2       1.2        105           80        15000     160      1000   # 1,0.0,1,0,120,130,160,160,Lancair Legacy,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+LGEZ   S     J      1     800     800      3        1         0.5        90            80        15000     130      1000   # 1,0.1,1,0,90,120,130,130,Rutan 61 Long-EZ,F 
+LNC2   S     P      1     1000    1000     3        1.2       1.2        105           55        18000     160      1000   # 1,0.1,1,0,110,140,160,160,Lancair 200/235/320/360,F 
+LNC4   S     P      1     1000    1000     3        1.2       1.2        110           55        18000     160      1000   # 1,0.3,1,0,120,130,160,160,Lancair4,F 
+LNCE   S     P      1     1000    1000     3        1         0.5        105           55        18000     160      1000   # 1,0.0,1,0,110,140,150,150,Lancair ES,F
+MAKO   S     P      1     1000    1000     3        1         0.5        105           55        18000     160      1000   # 1,0.0,1,0,110,140,170,170,Lancair MAKO,F
+M10    S     P      1     1000    1000     3        1         0.5        95            88        15000     110      1000   # 1,0.1,1,0,70,110,110,110,MOONEY  M-10 Cadet,F 
+M200   S     P      1     1000    1000     3        1.2       1          95            75        15000     110      1000   # 1,0.1,1,0,70,110,110,110,Meyers M200  Rockwell Commander 200,F 
+M20P   S     P      1     1300    1200     3        1         0.5        90            50        25000     140      1800   # 1,3.5,1,0,90,120,140,140,Mooney Ranger 201/205/Mark 21,F 
+M20T   S     P      1     1300    1300     3        1         0.5        70            60        25000     150      1800   # 1,1.3,1,0,90,120,150,150,Mooney M20K/M  Bravo,F 
+M22    S     J      1     1000    1500     3        1         0.5        90            60        15000     150      1000   # 1,0.1,1,0,90,120,150,150,Mooney Mustang,F 
+MITE   S     P      1     1000    1000     3        1         0.4        90            55        15000     110      1000   # 1,0.1,1,0,70,110,110,110,Mooney Mite,F 
+MOR2   S     P      1      650    1000     3        1.0       0.4        95            60        16800     122       845   # 1,0.1,1,0,90,110,122,122,Varga Kachina MOR2 or 2150 Kachina,F 
+NAVI   S     P      1     1500    1500     3        1         0.4        100           90        15000     130      1950   # 1,0.0,1,0,90,120,130,130,North American Navion,F 
+O1     S     P      1     800     1000     3        1         0.5        90            60        15000     100      1000   # 1,0.1,1,0,70,100,100,100,Cessna Birddog,F 
+P136   S     P      1     1250    1500     3        1         0.5        105           90        15000     130      1000   # 1,0.1,1,0,90,120,130,130,Piaggio Royal Gull 136,F 
+P210   S     P      1     750     1000     3        1         0.4        100           55        15000     130      1000   # 1,0.4,1,0,70,100,130,130,Cessna P210 Pressurized Centurion,F 
+P28A   S     P      1     900     1000     3        1         0.5        90            55        12000     110      1000   # 1,9.1,1,0,70,100,110,110,Piper Cherokee Archer Warrior,F 
+P28B   S     P      1     750     1000     3        1         0.5        95            55        12000     130      1000   # 1,0.3,1,0,90,120,130,130,Piper Cherokee 28-235 Dakota,F
+P28R   S     P      1     900     1000     3        1         0.5        95            55        12000     120      1000   # 1,1.4,1,0,90,120,120,120,Piper Cherokee Arrow,F 
+P28S   S     P      1     900     1000     3        1         0.5        105           80        15000     150      1000   # 1,0.1,1,0,90,120,150,150,PIPER Turbo Arrow 3  P28S,F
+P28T   S     P      1     1250    2000     3        1         0.5        110           90        15000     130      1000   # 1,0.1,1,0,100,140,130,130,Piper Turbo Arrow,F
+P28U   S     P      1     900     1000     3        1         0.5        110           80        15000     150      1000   # 1,0.1,1,0,90,120,150,150,PIPER PA-28RT-201T Turbo Arrow 4,F
+P32R   S     P      1     850     1000     3        1         0.5        100           55        20000     140      1500   # 1,1.6,1,0,90,120,140,140,Piper Lance Saratoga,F 
+P32T   S     P      1     1250    1500     3        1         0.5        110           60        25000     160      1800   # 1,0.2,1,0,100,140,160,160,Piper Turbo Lance,F 
+PA22   S     P      1     850     1000     3        1         0.5        90            47        15000     110      1000   # 1,0.1,1,0,80,110,110,110,Piper PA-22 Tri-Pacer  Colt,F 
+PA24   S     P      1     650     1150     3        1         0.4        90            55        15000     130      1000   # 1,0.7,1,0,90,110,130,130,Piper Commanche,F 
+PA32   S     P      1     1300    1150     3        1         0.4        95            55        16000     140      1500   # 1,3.8,1,0,90,120,140,140,Piper Lance Saratoga  Cherokee 6,F 
+PA38   S     P      1     600     1000     3        1         1          85            49        15000     110      1000   # 1,0.1,1,0,70,110,110,110,Piper Tomahawk PA-38,F 
+PA46   S     P      1     1530    1500     3        1         0.4        100           55        25000     180      1989   # 1,4.2,1,0,90,120,180,180,Piper Malibu  Mirage,F 
+PC6P   S     P      1     880     1000     3        1         1          90            50        25000     150      1500   # 1,0.1,1,0,110,130,150,150,Pilatus Porter PC-6,F 
+PUP    S     P      1     650     1000     3        1         0.4        85            50        15000     110      845    # 1,0.1,1,0,70,100,110,110,Beagle 121 Pup,F 
+PUSH   S     J      1     800     800      3        1         0.5        90            80        15000     130      1000   # 1,0.1,1,0,90,120,130,130,PRESCOTT Pusher,F 
+PZ4M   S     P      1     1000    1000     3        1         1          85            50        13255     110      1200   # 1,0.1,1,0,70,110,110,110,PZL-OKECIE  PZL-104M Wilga 2000,F 
+R90R   S     P      1     1100    1100     3        1         1          95            85        15000     130      1000   # 1,0.1,1,0,70,100,130,130,Ruschmeyer R90-230RG,F 
+RALL   S     P      1     1250    1500     3        1         1          105           100       15000     130      1000   # 1,0.1,1,0,80,110,130,130,Socata Rallye,F 
+RANG   S     P      1     1200    1200     3        1         1          105           59        15000     130      1000   # 1,0.1,1,0,80,110,130,130,Navion Rangemaster,F 
+RV10   S     P      1     1130    1130     3        1         1          100           50        18000     130      1700   # 1,0.3,1,0,70,100,130,130,Van's RV-10,F 
+RV12   S     P      1     1130    1130     3        1         1          100           50        18000     130      1700   # 1,0.0,1,0,70,100,130,130,Van's RV-12,F 
+RV14   S     P      1     1130    1130     3        1         1          100           50        18000     130      1700   # 1,0.0,1,0,70,100,130,130,Van's RV-14,F 
+RV8    S     P      1     1130    1130     3        1         1          90            50        18000     110      1700   # 1,0.1,1,0,70,100,110,110,Van's RV-8,F 
+RV9    S     P      1     1130    1130     3        1         1          90            50        18000     130      1700   # 1,0.1,1,0,70,100,130,130,Van's RV-9,F 
+S05F   S     P      1     1130    1130     3        1         1          100           90        15000     120      1700   # 1,0.1,1,0,70,100,120,120,SIAI-MARCHETTI  S-205-20F,F 
+S05R   S     P      1     750     1000     3        1         1          100           90        15000     120      2600   # 1,0.1,1,0,70,100,120,120,SIAI-MARCHETTI  S-205-20R,F 
+S108   S     P      1     800     800      3        1         1          100           80        15000     110      1000   # 1,0.1,1,0,90,120,110,110,Piper Voyager  Station wagon,F 
+S208   S     P      1     1300    1000     3        1         1          95            080       15000     130      1000   # 1,0.1,1,0,70,100,130,130,SIAI-MARCHETTI  S-208,F
+SAM    S     P      1      650    1000     3        1.0       0.4        85            50        16800     122       845   # 1,0.1,1,0,90,110,122,122,SAM AIRCRAFT Sam,F
+SB91   S     P      1     1000    1000     3        1         1          95            70        14700     130      1000   # 1,0.0,1,0,90,120,130,130,Saab Safir,F 
+T206   S     P      1     1130    1130     3        1         1          110           85        15000     150      1000   # 1,0.0,2,0,100,120,150,150,CESSNA Turbo Staionair 6 T206,F 
+T210   S     P      1     1150    1000     3        1         0.4        110           65        15000     150      1000   # 1,0.1,1,0,100,120,150,150,CESSNA T210 Turbo Centurion  T210,F
+T82R   S     P      1     890     1000     3        1         0.5        105           80        15000     140      1000   # 1,0.4,1,0,90,120,140,140,Cessna 182RG  Skylane RG,F  
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+SR20   S     P      1     800     1100     3        1         1          90            45        20000     120      1300   # 1,2.7,1,1,130,110,120,120,Cirrus SR-20,F 
+SR22   S     P      1     1000    1000     3        1         1          95            55        25000     150      1300   # 1,17.6,1,0,90,120,150,150,Cirrus SR-22,F 
+S22T   S     P      1     1000    1000     3        1         1          100           60        15000     170      1300   # 1,0.7,1,0,90,120,170,170,CIRRUS SR-22 Turbo  S22T,F
+SYMP   S     P      1     800     800      3        1.2       1.2        95            80        15000     130      1000   # 1,0.1,1,1,130,210,130,130,OMF Symphony  OMF-160,F 
+SX30   S     P      1     800     800      3        1.2       1.2        95            60        15000     130      1000   # 1,0.1,1,1,130,210,130,130,Swearingen SX-300,F 
+T34T   S     P      1     3000    3000     3        1         1          110           80        25000     170      1500   # 1,0.1,1,0,90,120,170,170,Beech T-34C Turbo Mentor,F 
+TAMP   S     P      1     800     1000     3        1         0.4        95            45        13000     145      1950   # 1,0.1,1,1,90,110,145,145,Socata TB-9 Tampico,F 
+TB20   S     P      1     800     800      3        1.2       1.2        100           80        15000     140      1000   # 1,0.2,1,0,110,120,140,140,SOCATA TB-20 Trinidad TB20,F 
+TB21   S     P      1     800     800      3        1.2       1.2        100           80        15000     150      1000   # 1,0.1,1,0,120,130,150,150,TB-21 Trinidad TC  TB21,F 
+TOBA   S     P      1     800     800      3        1.2       1.2        95            45        15000     130      1200   # 1,0.1,1,0,110,120,130,130,Socata Tobago TB-10,F 
+TB20   S     P      1     1200    1000     3        1         1          100           85        15000     130      1000   # 1,0.2,1,0,100,110,130,130,Socata Trinidad TB-20,F
+TWEN   S     P      1     650     1000     3        1         0.4        90            50        16800     161      845    # 1,0.0,1,0,90,110,161,161,Tecnam Twenty-Ten P-2010,F 
+U15    S     P      1     600     600      3        1         0.5        90            60        15000     110      1000   # 1,0.1,1,0,70,100,110,110,Phoenix Air U-15 Motor Glider,F
+UOPL   S     P      1     1500    1500     3        0.5       0.5        75            30        12000     100      1500   # 2,0.1,1,1,60,100,100,100, Micro-/ultra-light optionally piloted aircraft.
+URPL   S     P      1     1500    1500     3        0.5       0.5        75            30        12000     100      1500   # 2,0.1,1,1,60,100,100,100, Micro-/ultra-light remotely piloted aircraft.
+VELO   S     P      1     1100    1000     3        1         1          90            80        15000     130      1000   # 1,0.1,1,1,100,110,130,130,Velocity,F 
+VEZE   S     P      1     1200    1500     3        1         1          90            80        15000     120      1000   # 1,0.1,1,0,70,110,120,120,Rutan 33 VariEze,F 
+VK3P   S     P      1     1500    1500     3        1         1          95            75        15000     110      1000   # 1,0.1,1,0,70,100,110,110,CIRRUS  VK-30 Cirrus,F 
+VO10   S     P      1     800     800      3        1.2       1.2        100           80        15000     130      1000   # 1,0.1,1,0,90,100,120,130,Aero Commander 100 Volaire,F 
+VTUR   S     P      1     2000    2000     3        1.2       1.5        100           80        14500     130      2500   # 1,0.1,1,0,90,120,130,130,Questair M-20 Venture,F 
+# XL2 Do not use this type, "X" as first character in acft type causes remainder of table to stop loading."S      P     1       600      600      3         1          1             100       50        12500    113    # ,1,0,1,0,70,100,100,100,Liberty XL-2 F 
+# X3 EUROCOPTER X-3  X3 Helicopter  Turboprop  2 L  CANT INCLUDE 
+# XA41 XTREMEAIR XA-41  XA41 Landplane  Piston  1 L CANT INCLUDE 
+Z26    S     P      1     800     800      3        1.2       1.2        130           80        15000     120      1000   # 1,0.1,1,0,90,120,120,120,ZlinZ-26 ,F 
+Z42    S     P      1     800     800      3        1.2       1.2        130           80        15000     120      1000   # 1,0.0,1,0,90,120,120,120,Zlin Z-42,F 
+ZZZZ   S     P      1     800     800      3        1.2       1.2        130           80        15000     120      1000   # 1,0.2,1,0,90,120,120,120,type designator unassigned,F 
+# Civil Helicopter------------------------------------------------------------------------------------------
+A109   S     P      1     1500    1500     3        0.5       1          90            0         12000     130      1500   # 2,2.0,1,1,80,120,130,130,Agusta A109,F 
+A119   S     P      1     1500    1500     3        0.5       1          90            0         12000     130      1500   # 2,0.1,1,0,80,120,130,130,AGUSTA  A-119 Koala,F 
+A129   S     P      1     1500    1500     3        0.5       1          90            0         12000     130      1500   # 2,0.1,1,0,80,120,130,130,AGUSTA  Mangusta,F 
+A139   S     P      1     1500    1500     3        0.5       1          90            0         12000     130      1500   # 2,13.8,1,0,80,120,130,130,BELL-AGUSTA  AB-139,F 
+A189   S     P      2     1500    1500     3        0.5       1          90            0         12000     140      1500   # 2,0.1,1,0,80,120,130,130,Leonardo(AgustaWestland)  AW-189,F 
+ALO2   S     P      1     1500    1500     3        0.5       1          90            0         12000     130      1500   # 2,0.1,1,0,80,120,130,130,AEROSPATIALE  Alouette 2,F 
+ALO3   S     P      1     1500    1500     3        0.5       1          90            0         12000     130      1500   # 2,0.1,1,0,80,120,130,130,AEROSPATIALE  Alouette 3,F 
+AS50   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     140      1500   # 2,0.1,1,1,60,110,140,110,Aerspatiale AS-350 AStar,F 
+AS55   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     140      1500   # 2,0.1,1,1,80,120,140,110,Aerspatiale AS-355 TwinStar,F 
+SHIP   S     P      3     500     500      2        0.5       0.5        40            0         12000     40       500    # 2,0.0,1,1,30,40,40,40,Airship  (ICAO),F 
+BALL   S     P      3     500     500      2        0.2       0.2        30            0         12000     30       500    # 2,0.0,1,1,30,40,40,40,Balloon  (ICAO),F 
+B06    S     P      1     1500    1500     3        0.5       0.5        90            0         12000     130      1500   # 2,26.5,1,1,60,110,130,110,Bell 206 JetRanger,F 
+B105   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     130      1500   # 2,0.1,1,0,60,110,130,130,Eurocopter  BOLKOW  BO-105,F 
+B222   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     130      1500   # 2,0.1,1,1,80,120,130,130,Bell 222,F 
+B412   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,1,60,110,110,110,Bell 412,F
+B429   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     130      1500   # 2,1.2,1,1,80,110,130,140,Bell 429 GlobalRanger,F 
+B430   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     130      1500   # 2,1.9,1,1,80,110,130,140,Bell 430,F 
+B47G   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     100      1500   # 2,0.1,1,0,60,110,100,100,BELL  47G,F 
+B47J   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,0,60,110,110,110,BELL  47J Ranger,F 
+B525   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     140      1500   # 2,0.1,1,1,80,110,240,140,Bell,Relentless,F
+BK17   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,1.5,1,0,60,110,110,110,EUROCOPTER-KAWASAKI  BK-117B,F 
+BSTP   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,0,60,110,110,110,BELL  214ST SuperTransport,F 
+EC20   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.3,1,1,60,110,110,110,Eurocopter EC-120 Colibri,F 
+EC25   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,1,60,110,110,110,Airbus Helicopter EC-225 Super Puma ,F 
+EC35   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,11.8,1,1,60,110,110,110,Eurocopter EC-145,F 
+EC45   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,10.3,1,1,60,110,110,110,Eurocopter EC-145 UH-72 Lakota,F 
+EC55   S     P      2     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.2,1,1,60,110,110,110,Airbus Helicopter EC-55,F  
+EN28   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     100      1500   # 2,0.1,1,1,60,110,110,110,ENSTROM  Shark F-28 Falcon,F 
+EN48   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,1,60,110,110,110,ENSTROM  480,F 
+EXPL   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     130      1500   # 2,0.1,1,1,60,110,130,130,MD Helicopters MD-900 Explorer,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+GYRO   S     P      3      500     500     3        0.4       0.4        35            0         12000     060      1500   # 2,0.0,1,1,60,100,100,100,any gyrocopter,F 
+H160   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     140      1500   # 2,0.1,1,1,80,110,240,140,Airbus H-160,F
+H269   S     P      3     1500    1500     3        0.5       0.5        90            0         12000     100      1500   # 2,0.2,1,1,60,110,110,110,Schweizer 269C,F 
+H500   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,1,60,110,110,110,Hughes H500  McDonnell Douglas MD-500,F 
+HELO   S     P      3     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,1,60,110,110,110,Civil Helicopter,F 
+K209   S     P      3     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,1,60,110,110,110,FAMA K-209 KISS K209 Helicopter,F
+MD60   S     P      3     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,1,60,110,110,110,McDonnell Douglas MD-600,F 
+R22    S     P      3     1500    1500     3        0.5       0.5        75            0         12000     100      1500   # 2,0.3,1,1,60,100,100,100,Robinson Beta,F 
+R44    S     P      3     1500    1500     3        0.5       0.5        80            0         12000     110      1500   # 2,0.7,1,1,60,110,110,110,Robinson Raven,F 
+R66    S     P      3     1500    1500     3        0.5       0.5        85            0         12000     120      1500   # 2,0.1,1,1,60,120,120,120,Robinson R66,F 
+S330   S     P      1     1500    1500     3        0.5       0.5        90            0         12000     90       975    # 2,0.1,1,1,60,90,90,90,SCHWEIZER  330,F 
+S61    L     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.2,1,0,60,90,110,110,SIKORSKY  S-61A,F 
+S61R   L     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,0,60,90,110,110,SIKORSKY  S-61R,F 
+S64    L     P      1     1500    1500     3        0.5       0.5        90            0         12000     110      1500   # 2,0.1,1,0,60,90,110,110,SIKORSKY  S-64 Skycrane,F 
+S76    S     P      1     1500    1500     3        0.5       0.5        90            0         12000     140      1500   # 2,16.9,1,1,80,110,240,140,SIKORSKY  S-76,F
+S92    L     P      3     1500    1500     3        0.5       0.5        90            0         12000     130      1500   # 2,12.2,1,1,80,120,130,130,S-92 Helibus,F 
+UHEL   S     P      3     1500    1500     3        0.5       0.5        75            0         12000     100      1500   # 2,0.1,1,1,60,100,100,100,Ultralight Helicopter,F 
+UOPH   S     P      3     1500    1500     3        0.5       0.5        75            0         12000     100      1500   # 2,0.1,1,1,60,100,100,100, Micro-/ultra-light optionally piloted helicopter,F
+URPH   S     P      3     1500    1500     3        0.5       0.5        75            0         12000     100      1500   # 2,0.1,1,1,60,100,100,100, Micro-/ultra-light remotely piloted helicopter,F
+# GA Twin Prop------------------------------------------------------------------------------------------
+AC52   S     P      2     1000    1500     3        0.7       1          105           59        19000     190      1742   # 3,0.1,1,0,100,130,190,190,Aero Commander 520,F 
+AC56   S     P      2     1000    1500     3        1         1          105           65        19000     170      1820   # 3,0.1,2,1,110,150,170,170,Rockwell Commander 560,F 
+AC68   S     P      2     1175    1375     3        0.8       1          115           59        28000     170      1742   # 3,0.1,2,1,110,150,170,170,Rockwell Commander 680,F 
+AC72   S     P      2     1300    1300     3        0.8       1          115           59        35000     190      1800   # 3,0.1,2,0,100,130,190,190,AERO COMMANDER  720 Alti Cruiser,F 
+AEST   S     P      2     1500    1500     3        0.8       1          115           59        29000     190      1800   # 3,1.7,2,1,100,130,190,190,Piper PA-60 Aerostar,F 
+B58T   S     P      2     1230    1730     3        1         1          110           75        20000     170      1800   # 3,0.5,2,1,110,150,170,170,Beech 58 Pressurized,F 
+BE18   S     P      2     1000    1000     3        1         1          120           82        20000     140      1820   # 3,0.2,2,1,90,120,140,140,Beech 18,F 
+BE50   S     P      2     1000    1600     3        1         1          100           65        20000     180      1690   # 3,0.2,1,1,100,130,160,160,Beech 50 Twin Bonanza,F 
+BE55   S     P      2     1500    1700     3        1         0.4        100           80        20000     160      2275   # 3,4.5,2,1,110,150,160,160,Beech 55 Baron,F 
+BE56   S     P      2     1200    1200     3        1         0.4        105           80        20000     160      1800   # 3,0.0,2,1,110,150,160,160,Beech 56 Turbo Baron,F 
+BE58   S     P      2     1230    1730     3        1         1          110           75        20000     170      1800   # 3,17.5,2,1,110,150,170,170,Beech 58 Baron,F 
+BE60   S     P      2     1500    1500     3        1         1          105           75        30000     160      2093   # 3,0.7,2,1,90,130,160,160,Beech 60 Duke,F 
+BE65   S     P      2     1600    1300     3        1         0.4        110           75        30000     160      2080   # 3,2.0,2,1,100,130,160,160,Beech Queen Air 65,F 
+BE70   S     P      2     1300    1300     3        1         0.4        110           85        30000     190      2000   # 3,0.1,2,0,100,130,190,190,BEECH  70 Queen Air,F 
+BE76   S     P      2     1100    1500     3        1         1          105           70        20000     160      1625   # 3,0.3,2,1,100,130,160,160,Beech 76 Duchess,F 
+BE80   S     P      2     1275    1275     3        1         1          110           75        26000     170      2080   # 3,0.6,2,1,100,130,170,170,Beech Queen Air 80,F 
+BE88   S     P      2     1075    1275     3        1         1          110           75        26000     170      2080   # 3,0.1,2,1,110,150,170,170,Beech Queen Air 88,F 
+BE95   S     P      2     1450    1250     3        1         0.4        105           65        18000     160      1600   # 3,0.3,2,1,100,130,160,160,Beech 95 Travel Air,F 
+BN2P   S     P      2     1250    1250     3        0.8       1          100           65        23000     160      2600   # 3,0.4,2,0,90,140,130,160,BRITTEN-NORMAN  BN-2A Islander,F 
+BU20   S     P      3     2000    2000     3        0.8       1          100           90        14500     120      1950   # 3,0.1,2,0,90,120,120,120,Bushmaster 2000,F 
+C303   S     P      2     1200    3000     3        1         1          95            68        25000     160      1950   # 3,0.3,2,0,100,130,160,160,Cessna T303  Crusader,F 
+C310   S     P      2     1200    2000     3        1         0.4        120           80        20000     160      1820   # 3,5.6,2,0,90,140,160,160,Cessna 310,F 
+C320   S     P      2     1500    2000     3        0.8       1          110           85        20000     140      2600   # 3,0.1,2,0,90,130,140,140,Cessna 320 Skynight,F 
+C335   S     P      2     1200    2000     3        1         1          100           69        20000     140      2860   # 3,0.1,2,0,90,130,140,140,Cessna 335,F 
+C336   S     P      2     800     1340     3        1         1          100           83        20000     150      3380   # 3,0.1,2,0,100,140,150,150,Cessna 336 Skymaster,F 
+C337   S     P      2     800     1500     3        1         1          100           70        19500     150      1625   # 3,0.3,2,0,100,140,150,150,Cessna 337 Skymaster,F 
+C340   S     P      2     1200    1200     3        1         1          110           80        26500     170      2080   # 3,4.7,2,0,110,150,170,170,Cessna 340,F 
+C402   S     P      2     1200    1200     3        0.8       1          110           78        17000     150      1885   # 3,20.2,2,0,100,130,150,150,Cessna 402,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+C404   S     P      2     2000    1500     3        1         1          110           83        26000     160      3380   # 3,0.9,2,0,100,130,160,160,Cessna 404 Titan,F 
+C411   S     P      2     2000    1500     3        1         1          110           80        26000     170      3640   # 3,0.1,2,0,100,130,170,170,Cessna 411,F 
+C414   S     P      2     1500    1500     3        0.8       1          110           82        31000     160      2470   # 3,7.0,2,0,100,150,160,160,Cessna 414  Chancellor,F 
+C421   S     P      2     1500    1500     3        0.8       1          105           83        27000     180      2000   # 3,7.0,2,0,100,150,180,180,Cessna 421  Golden Eagle,F 
+DA42   S     P      2     1200    1500     3        0.8       0.8        105           55        18000     165      2600   # 3,1.2,2,0,100,150,180,180,Diamond  Twinstar,F
+DA62   S     P      2     1200    1500     3        0.8       0.8        105           55        18000     175      2600   # 3,0.3,2,0,100,150,180,180,Diamond  DA62,F 
+DC3    L     P      3     1200    1200     3        1         1          100           70        17000     140      1800   # 3,0.1,2,1,90,120,140,140,Douglas DC-3 C-47 Dakota,F 
+DHC3   S     P      1     900     1200     3        0.8       1          110           60        31000     140      2500   # 3,0.1,2,0,90,130,140,140,DE HAVILLAND CANADA  Otter,F 
+DO28   S     P      2     1500    1500     3        1         0.4        120           80        14500     150      1495   # 3,0.1,2,0,90,130,150,150,DORNIER  Do-28,F 
+DOVE   S     P      1     1420    1420     3        0.8       1          130           120       31000     140      3250   # 3,0.1,2,0,90,130,140,140,De Havilland Dove DH 104,F 
+GA7    S     P      2     1000    1000     3        0.8       1          110           65        17400     140      1150   # 3,0.1,2,0,90,130,140,140,Grumman GA-7 Cougar,F 
+HERN   S     J      3     1500    1500     3        0.8       1          130           100       14500     155      2340   # 3,0.1,3,0,130,140,155,155,DE HAVILLAND  DH-114 Heron,F 
+L18    S     P      3     1200    1200     3        0.8       1          130           100       14500     140      1500   # 3,0.1,2,1,90,130,140,140,Lockheed L-18,F 
+P06T   S     P      2     1500    2000     3        0.8       1          110           85        20000     140      2600   # 3,0.1,2,0,90,130,140,140,Tecnam P-2006T,F 
+P337   S     P      3     2000    2000     3        0.8       1          130           100       14500     150      2340   # 3,0.2,2,0,130,140,150,150,CESSNA  P337 Pressurized Skymaster,F 
+P66P   S     P      2     1350    1500     3        0.8       0.8        140           90        14500     150      5200   # 3,0.1,2,0,130,140,150,150,PIAGGIO  P-166A,F 
+P66T   S     P      1     1200    1000     3        1         0.4        100           55        19500     160      1300   # 3,0.1,2,0,130,140,160,160,PIAGGIO  P-166DP1,F 
+P68    S     P      2     1500    1500     3        1         1          100           80        14500     150      1950   # 3,0.1,2,0,90,130,150,150,Partenavia P-68 Victor,F 
+PA23   S     P      1     900     1200     3        1         1          85            70        17000     130      1725   # 3,0.6,2,0,100,130,130,130,Piper Apache   Geronimo,F 
+PA27   S     P      2     900     1200     3        1         0.4        80            56        17000     150      1500   # 3,1.6,2,0,90,130,150,150,Piper Twin Commanche,F 
+PA30   S     P      2     1200    1500     3        1         0.4        90            72        15000     150      1820   # 3,0.7,2,0,90,130,150,150,Piper Twin Commanche,F     
+PA31   S     P      1     900     1200     3        1         0.4        100           65        24000     150      1800   # 3,9.7,2,0,100,150,150,150,Piper Navajo  Chieftain,F 
+PA34   S     P      1     800     1200     3        1         1          95            45        19000     160      1600   # 3,3.8,2,0,90,130,140,140,Piper Seneca,F 
+PA44   S     P      1     1400    1200     3        1         1          130           72        18000     140      1500   # 3,6.6,2,0,90,130,140,140,Piper Seminole,F 
+PAT4   S     P      2     2200    2000     3        1         1          110           74        14500     180      1820   # 3,0.6,2,0,130,140,180,180,PIPER  T-1040,F 
+TNAV   S     P      1     700     700      3        0.8       1          130           85        14500     180      1600   # 3,0.1,2,0,130,140,180,180,Temco Ryan Twin Navion D16,F 
+TW1R   S     P      1     700     700      3        0.8       1          130           85        14500     160      1600   # 3,0.1,2,0,130,140,180,180,Dyn Aero Twin R,F 
+VTOR   S     P      2     1200    1200     3        0.8       1          110           100       19200     160      1500   # 3,0.1,2,0,100,140,160,160,Partenavia P68 Vulcanair,F 
+# GA Turboprop------------------------------------------------------------------------------------------
+AC50   S     P      2     1340    1500     3        0.8       1          105           59        21000     180      1742   # 4,1.4,3,0,130,180,180,180,Rockwell Commander 500,F 
+AC80   S     P      2     1500    1500     3        0.8       1          105           59        21000     230      2500   # 4,0.0,3,0,130,210,230,230,Rockwell  680T  Turbo Commander,F 
+AC90   S     P      2     1900    2000      3        0.8       1          105           59        21000     250      2500   # 4,0.7,5,0,170,240,240,240,Rockwell  690  Turbo Commander 690,F 
+AC95   S     P      2     2000    2000     3        0.8       1          105           59        21000     250      2500   # 4,0.2,3,1,130,210,250,250,Rockwell  695  Jetprop Commander 695,F 
+B350   S     P      3     2500    2000     3        1         0.4        110           97        25000     275      3000   # 4,11.3,3,1,130,210,250,250,Beech Super King Air 350,F 
+B36T   S     P      1     2000    2000     3        1         1          100           80        25000     250      2500   # 4,0.1,3,1,130,210,250,250,Beech 36 Turbine Bonanza,F 
+B58P   S     P      2     2500    2500     3        0.8       1          110           90        25000     250      2800   # 4,0.1,3,1,130,210,250,250,Cougar Baron ,F 
+B60T   S     P      2     2000    2000     3        0.8       1          100           85        25000     250      2800   # 4,0.1,3,1,130,210,250,250,Royal Turbine Duke,F 
+BE10   S     P      2     1550    2250     3        0.8       0.8        100           85        30500     250      2000   # 4,1.0,3,1,130,210,250,250,Beech 100 King Air,F 
+BE20   S     P      2     2000    2500     3        0.8       1          100           85        35000     270      2500   # 4,19.8,3,1,130,210,270,250,Beech 200 Super King Air,F 
+BE30   S     P      3     2800    3000     3        1         1          110           100       35000     270      2900   # 4,3.9,3,0,130,210,270,250,Beech 300 Super King Air,F 
+BE9L   S     P      2     1800    2000     3        1         0.4        105           88        28080     210      2600   # 4,12.9,3,1,130,210,210,210,Beech 90 King Air,F 
+BE9T   S     P      2     2600    2600     3        1         0.4        105           88        28080     210      2600   # 4,1.1,3,1,130,180,210,210,Beech F90 King Air,F 
+BN2T   S     P      2      800    1000     3        0.8       1          95            55        12500     150      1200   # 4,0.0,3,1,110,150,150,150,BRITTEN-NORMAN  Turbine Islander,F 
+C02T   S     P      2     1500    2000     3        0.8       1          100           78        26900     190      2000   # 4,0.1,3,1,130,180,190,190,CESSNA  402 (turbine),F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+C04T   S     P      2     1600    2000     3        1         1          130           83        26000     210      2000   # 4,0.1,3,1,130,180,210,210,CESSNA  404 (turbine),F 
+C06T   S     P      1     1050    1000     3        0.8       1          100           85        26000     190      2000   # 4,0.1,3,1,110,160,190,190,CESSNA  206 (turbine),F 
+C07T   S     P      1     1000    1000     3        0.8       1          100           85        26000     210      2000   # 4,0.1,3,1,130,180,210,210,CESSNA 207 (turbine),F
+C14T   S     P      2     1000    1000     3        0.8       1          110           85        30800     210      2470   # 4,0.1,3,1,130,180,210,210,CESSNA  414 (turbine),F 
+C212   S     P      3     1000    1000     3        0.8       1          110           85        26000     170      2600   # 4,0.1,3,1,110,150,170,170,Casa C-212,F 
+C21T   S     P      2     1000    2000     3        0.8       1          115           83        31000     170      2600   # 4,0.1,3,1,110,150,170,170,CESSNA  421 (turbine),F 
+C425   S     P      2     1800    2500     3        0.8       1          105           90        31000     260      2600   # 4,1.3,3,1,130,210,260,250,Cessna 425  Corsair  Conquest I,F 
+C441   S     P      2     1200    3000     3        1         1          100           83        31000     280      3380   # 4,1.2,3,1,130,210,280,250,Cessna 441  Conquest 2,F 
+CO50   S     P      3     2500    2500     3        0.7       0.7        115           60        33600     230      3000   # 4,0.1,3,1,110,210,230,230,Cobalt Valkyrie,F
+DC3S   S     P      3     1330    1330     3        0.8       0.8        110           90        14500     160      2600   # 4,0.1,3,1,110,140,160,160,DOUGLAS  Super DC-3,F 
+DC3T   L     P      3     2000    2000     3        0.8       1          110           90        25000     230      2400   # 4,0.1,3,1,130,210,230,230,Douglas DC-3-65TP SuperDakota,F 
+DC7    L     P      3     1250    1250     3        1         1          120           70        22750     170      1391   # 4,0.1,3,0,130,170,170,170,DOUGLAS  DC-7,F 
+DH2T   S     P      1     1220    1000     3        0.8       1          100           60        25000     160      3250   # 4,0.1,3,1,130,140,160,160,DeHavilland DHC-2 Turbo Beaver,F 
+DH3T   S     P      1     750     1000     3        0.8       1          100           55        25000     160      3250   # 4,0.1,3,1,130,140,160,160,DE HAVILLAND CANADA  Turbo Otter,F 
+DHC4   S     P      3     1350    1000     3        0.8       1          110           100       25000     160      2600   # 4,0.1,3,1,110,140,160,160,DE HAVILLAND CANADA  DHC-4 Caribou,F 
+DHC5   L     P      3     2000    1500     3        1         1          120           70        25000     170      2000   # 4,0.1,3,0,130,170,170,170,DE HAVILLAND CANADA  DHC-5 Buffalo,F 
+DHC6   S     P      2     1200    1800     3        0.8       1          110           95        26000     150      3250   # 4,0.5,3,1,130,140,150,150,DeHavilland DHC-6  Twin Otter,F 
+EPIC   S     P      3     2500    2500     3        0.8       1          120           100       26000     270      3000   # 4,0.1,3,1,120,160,270,250,Epic LT,F 
+EVOT   S     P      1     2500    2500     3        0.8       1          120           75        28000     270      4000   # 4,0.3,3,1,130,210,320,250,Lancair Evolution Turbine,F
+F406   S     P      2     2250    2250     3        0.8       0.8        110           93        25000     190      2500   # 4,0.1,3,1,130,190,190,190,Cessna Reims F406,F 
+G159   L     P      3     2000    2000     3        0.8       1          130           100       28000     260      2340   # 4,0.0,3,0,130,210,260,250,Grumman Gulfstream 1,F 
+KODI   S     P      1     1220    1000     3        0.8       1          110           77        15000     140      3250   # 4,0.2,3,1,130,140,140,140,Quest Kodiak,F 
+LNP4   S     P      1     2500    2500     3        0.8       1          120           75        28000     270      4000   # 4,0.1,3,1,130,210,320,250,Lancair PropJet4,F
+M7T    S     P      1     825     825      3        0.8       1          110           120       15000     130      3250   # 4,0.1,1,1,90,120,130,130,MAULE  M-7-420 Star Craft,F 
+M600   S     P      3     2500    2500     3        0.7       0.7        115           60        33600     230      3000   # 4,0.1,3,1,110,210,230,230,PIPER PA-46-600TP M600,F 
+MU2    S     J      2     1700    2000     3        0.7       0.7        120           77        31000     270      2210   # 4,1.1,3,1,130,210,250,270,Mitsubishi MU-2 Solitaire,F 
+P180   S     P      3     1850    2000     3        0.8       1          120           90        41000     290      2860   # 4,0.8,3,1,130,210,250,290,Piaggio Avanti,F 
+P2     L     P      1     1000    1000     3        0.7       0.4        120           55        19500     175      1300   # 4,0.1,3,0,150,210,175,175,Lockheed P2,F 
+P46T   S     P      3     2500    2500     3        0.7       0.7        115           60        33600     230      3000   # 4,3.4,3,1,110,210,230,230,Piper Malibu Meridian,F 
+P68T   S     J      3     2800    3500     3        1         1          100            77        31000     220      3500   # 4,0.1,3,1,130,180,220,220,Partenavia P-68TP Spartacus,F 
+P750   S     P      1     1220    1000     3        0.8       1          110           77        31000     160      3250   # 4,0.1,3,1,130,140,160,160,PAC 750 XSTOL,F 
+PAY1   S     P      2     1000    2000     3        0.8       1          115           59        21000     215      2000   # 4,0.6,3,1,130,175,215,215,Piper Cheyenne 1,F 
+PAY2   S     P      2     1500    2000     3        0.8       1          115           59        21000     235      2000   # 4,1.0,3,1,130,175,235,235,Piper Cheyenne 2,F 
+PAY3   S     P      2     2000    2000     3        0.8       1          115           95        35000     290      2340   # 4,0.2,3,1,130,210,290,250,Piper Cheyenne 4,F 
+PAY4   S     P      2     1800    2000     3        0.8       1          120           90        35000     360      2340   # 4,0.0,3,1,130,210,290,250,Piper Cyeyenne 4,F	
+PC12   S     P      1     1800    2000     3        0.8       1          120           90        35000     320      2340   # 4,25.9,3,1,130,210,320,250,Pilatus Eagle PC-12,F 
+PC6T   S     P      1     1900    1500     3        0.8       1          130           100       33000     190      1950   # 4,0.1,3,1,130,210,190,190,Pilatus TurboPorter,F 
+RC70   S     P      2     1340    1500     3        0.8       1          105           59        21000     180      1742   # 4,0.1,3,0,130,180,180,180,Fuji/Rockwell Commander 700,F 
+SB20   S     J      3     2000    2000     3        1         1          115           85        31000     290      2500   # 4,0.1,3,1,130,210,290,250,Saab 2000,F 
+SC7    L     P      3     1400    1500     3        1         1          110           50        14700     130      1400   # 4,0.0,5,0,130,130,130,130,Short  Skyvan,F 
+STAR   S     P      1     2200    2200     3        0.8       1          130           100       33000     290      2200   # 4,0.0,3,1,130,210,290,250,Beech Starship,F 
+SW2    S     P      3     2000    2500     3        0.8       1          120           100       33000     270      2600   # 4,0.1,1,1,120,160,270,250,Swearingen  Merlin 2,F 
+SW3    S     P      3     1800    2500     3        1         1          125           97        25000     270      3120   # 4,0.6,3,0,150,210,270,270,Swearingen  Merlin 3,F 
+SW4    S     P      1     1500    2500     3        1         0.4        130           100       31000     300      2000   # 4,4.9,3,1,130,210,300,250,Fairchild Metro 4,F
+Y12F   S     P      3     900     900      3        0.8       1          130           85        26000     170      1200   # 4,0.1,3,1,110,150,170,170,HARBIN Y-12F Aircar,F
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+TBM7   S     P      3     1000    1000     3        1.2       1.2        120           60        31000     300      2340   # 4,2.1,1,0,130,210,300,250,TBM 700,F
+TBM8   S     P      3     2000    2500     3        0.8       1          125           60        31000     300      2500   # 4,2.4,3,1,130,210,300,250,TBM 850,F 
+TBM9   S     P      3     2000    2500     3        0.8       1          125           60        31000     300      2500   # 4,0.5,3,1,130,210,300,250,TBM 900,930,F 
+TRIS   S     J      3     1600    1600     3        1         1          110           100       13100     160      2000   # 4,0.1,1,0,90,120,160,160,Britten Norman Trislander,F 
+#GA Jets------------------------------------------------------------------------------------------
+ASTR   S     J      3     3000    2500     2.8      0.8       1          125           100       35000     450      3500   # 5,0.5,5,2,170,250,450,250,IAI 1125 Astra Gulfstream G100,F 
+BA11   L     J      3     2000    2400     2.8      0.8       1          125           105       35000     450      3000   # 5,0.0,5,2,170,250,450,250,BAC 111,F 
+BE40   S     J      3     3000    2200     2.8      1         0.4        125           100       35000     400      3500   # 5,7.6,5,2,170,250,400,250,Beech 400 Beechjet,F 
+C25A   S     J      3     3070    2000     2.8      1         1          120           83        26000     350      4000   # 5,1.9,5,2,170,250,450,250,Cessna Citation 525A,F 
+C25B   S     J      3     3070    2000     2.8      1         1          120           83        26000     350      4000   # 5,2.7,5,2,170,250,450,250,CESSNA  Citation CJ3,F 
+C25C   S     J      3     3500    2000     2.8      1         1          120           83        26000     350      4000   # 5,1.4,5,2,170,250,450,250,CESSNA  Citation CJ4,F 
+C25M   S     J      3     3500    2000     2.8      1         1          120           83        26000     350      4000   # 5,0.2,5,2,170,250,450,250,CESSNA  Citation M2,F
+C500   S     J      3     3000    2500     2.8      0.8       1          120           93        35899     357      4000   # 5,0.2,5,1,150,230,325,230,Cessna Citation 1 SP,F 
+C501   S     J      3     3000    2000     2.8      0.8       1          120           82        41000     350      4000   # 5,0.6,5,1,150,230,325,230,Cessna Citation 1 SP,F
+C510   S     J      3     3000    2000     2.8      0.8       1          120           100       41000     350      4000   # 5,1.5,3,0,100,230,290,230,Cessna Citation Mustang,F 
+C525   S     J      3     3000    2000     2.8      1         1          125           100       41000     400      4000   # 5,3.5,5,2,170,250,450,250,Cessna 525 CitationJet,F 
+C526   S     J      3     3000    2000     2.8      1         1          125           100       41000     400      4000   # 5,0.1,5,2,170,250,450,250,Cessna 526 CitationJet,F 
+C550   L     J      3     3000    2000     2.8      1.2       0.8        115           91        43000     385      4000   # 5,3.3,5,2,170,250,450,250,Cessna 550 Citation 2,F 
+C55B   L     J      3     3000    2000     2.8      1.2       0.8        115           91        43000     385      4000   # 5,3.3,5,2,170,250,450,250,Cessna 550 Citation 550B Bravo,F 
+C551   S     J      3     3000    2000     2.8      1         1          115           100       43000     400      4000   # 5,0.1,5,2,170,250,450,250,Cessna 551 Citation 2SP,F 
+C560   S     J      3     3000    2500     2.8      1         1          130           100       51000     450      4000   # 5,5.4,5,2,170,250,450,250,Cessna 560 Citation 5,F 
+C56X   L     J      3     3000    2000     2.8      0.8       1          130           120       51000     450      3250   # 5,8.2,5,2,170,250,450,250,Cessna 560XL  Citation Excel,F 
+C650   L     J      3     3000    2000     2.8      1.2       0.8        130           91        51000     450      4000   # 5,1.2,5,2,170,250,450,250,Cessna 650  Citation 3/6/7,F 
+C680   L     J      3     3000    2000     2.8      1.2       0.8        130           91        51000     450      4000   # 5,4.1,5,2,170,250,450,250,Cessna 680  Citation Sovereign,F 
+C68A   L     J      3     3000    2000     2.8      1.2       0.8        130           91        51000     450      4000   # 5,0.5,5,2,170,250,450,250,Cessna 680A  Citation Latitude,F
+C700   S     J      3     3000    2500     2.8      1         1          130           100       51000     450      4000   # 5,1.8,5,2,170,250,450,250,Cessna 700  Citation Longitude,F 
+C750   S     J      3     3000    2500     2.8      1         1          130           100       51000     450      4000   # 5,2.8,5,2,170,250,450,250,Cessna 750  Citation 10,F 
+CL30   S     J      3     3000    2500     2.8      1.2       0.8        130           100       45000     400      4000   # 5,4.0,5,2,170,250,450,250,Canadair CL-300 Challenger,F 
+CL35   S     J      3     3000    2500     2.8      1.2       0.8        130           100       45000     400      4000   # 5,1.0,5,2,170,250,450,250,Bombardier BD-100 Challenger 350,F 
+CL60   L     J      3     3000    2500     2.8      0.8       0.8        130           100       45000     400      3500   # 5,3.5,5,2,170,250,450,250,Canadair CL-600 Challenger,F 
+E50P   L     J      3     2500    2000     2.8      0.8       1          130           120       45000     325      5550   # 5,1.7,3,1,170,250,325,250,EMBRAER  EMB-500 Phenom 100,F 
+E545   S     J      3     3000    2000     2.8      0.8       1          130           98        49999     400      3000   # 5,0.2,5,2,170,250,450,250,EMBRAER EMB-545 Legacy 450,F 
+E550   S     J      3     3000    2000     2.8      0.8       1          130           98        49999     400      3000   # 5,0.3,5,2,170,250,450,250,EMBRAER EMB-550 Legacy 500,F 
+E55P   L     J      3     2800    2000     2.8      0.8       1          130           120       40000     350      3000   # 5,3.7,4,1,170,250,400,250,EMBRAER  Phenom 300,F 
+EA50   S     J      3     2500    2000     2.8      0.8       1          115           90        30000     290      3000   # 5,1.1,5,2,90,140,290,230,Eclipse 500,F 
+F2TH   S     J      3     2500    2000     2.8      0.8       1          130           100       39000     450      4000   # 5,3.4,5,2,170,250,450,250,Dassault Falcon 2000,F 
+F70    L     J      3     2000    2000     2.5      0.8       1          130           100       35000     450      4000   # 5,0.1,5,2,170,250,450,250,Fokker 70,F 
+F900   L     J      3     2500    2000     2.5      0.8       1          130           120       51000     450      4000   # 5,1.9,5,2,170,250,450,250,Dassault Falcon 900,F 
+FA10   S     J      3     2300    2000     2.8      0.8       1          110           100       42000     450      3500   # 5,0.3,5,2,170,250,450,250,Dassault Falcon 10,F 
+FA20   S     J      3     2000    2200     2.8      0.8       1          110           120       42000     450      3500   # 5,0.9,5,2,170,250,450,250,Dassault Falcon 20  HU-25,F 
+FA7X   L     J      3     2500    2000     2.8      0.8       1          130           120       51000     450      3500   # 5,0.5,5,2,170,250,450,250,Dassault Falcon 7X,F
+FA8X   L     J      3     2500    2000     2.8      0.8       1          130           120       51000     450      3500   # 5,0.5,5,2,170,250,450,250,Dassault Falcon 8X,F 
+FA50   L     J      3     2500    2000     2.5      0.8       1          130           120       51000     450      4000   # 5,1.4,5,2,170,250,450,250,Dassault Falcon 50,F 
+G150   S     J      3     3500    2000     2.8      0.8       1          130           100       45000     450      4000   # 5,1.0,5,2,170,250,450,250,Gulfstream G150,F 
+G280   S     J      3     3500    2000     2.8      0.8       1          130           100       45000     450      4000   # 5,1.2,5,2,170,250,450,250,Gulfstream G280,F 
+GA5C   S     J      3     3500    2000     2.8      0.8       1          130           100       45000     450      4000   # 5,0.2,5,2,170,250,450,250,Gulfstream G500,F 
+GALX   S     J      3     3500    2000     2.8      0.8       1          130           100       45000     450      4000   # 5,1.0,5,2,170,250,450,250,IAI 1126 Galaxy,F 
+GL5T   S     J      3     3500    2000     2.5      1.2       0.8        130           100       45000     450      4000   # 5,0.6,5,2,210,250,450,250,BOMBARDIER  BD-700 Global 5000,F 
+GLEX   S     J      3     3500    2500     2.5      1.2       0.8        130           100       45000     450      4000   # 5,1.3,5,2,210,250,450,250,Bombardier BD-700 Global Express,F 
+GLF2   L     J      3     3000    2500     2.5      0.8       1          135           120       51000     450      4000   # 5,0.1,5,2,170,250,450,250,Gulfstream 2,F 
+GLF3   L     J      3     3500    2500     2.5      0.8       1          135           120       51000     450      4000   # 5,0.2,5,2,170,250,450,250,Gulfstream 3,F 
+GLF4   L     J      3     3500    2500     2.5      0.8       1          135           100       51000     450      4000   # 5,3.5,5,2,170,250,450,250,Gulfstream 4,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+GLF5   L     J      3     3500    2000     2.5      0.8       1          140           120       51000     450      5500   # 5,2.9,5,2,210,250,450,250,Gulfstream 5,E 
+GLF6   L     J      3     3500    2000     2.5      0.8       1          140           120       51000     450      5500   # 5,0.6,5,2,210,250,450,250,Gulfstream 6,E 
+H25A   S     J      3     2500    2000     2.8      0.8       1          130           100       51000     450      3000   # 5,0.1,5,2,170,250,450,250,Hawker HS-125 400/600,F 
+H25B   S     J      3     3000    2000     2.8      2.5       1.2        150           110       51000     450      4200   # 5,5.3,5,2,170,250,450,250,Hawker HS-125 700/800,F 
+H25C   S     J      3     3000    2200     2.8      0.8       1          130           120       51000     450      3250   # 5,0.2,5,2,170,250,450,250,Raytheon Hawker-1000,F 
+HA4T   S     J      3     3000    2000     2.8      0.8       1          130           100       41000     400      2340   # 5,0.3,5,2,170,250,450,250,Raytheon Hawker Horizon 4000,F 
+HDJT   S     J      3     3000    3000     2.8      0.8       1          130           120       41000     350      3250   # 5,0.2,4,1,170,250,350,250,Honda HA-420 HondaJet,F 
+JCOM   S     J      3     2500    2000     2.8      0.8       1          130           100       41000     490      2600   # 5,0.1,5,2,170,250,450,250,Aero Commander 1121 Jet Commander,F 
+L29A   L     J      3     3000    3000     2.8      0.8       0.8        140           90        43000     440      5200   # 5,0.1,5,2,170,250,450,250,Lockheed L-329 JetStar 6/8,F 
+L29B   L     P      3     3000    3000     2.8      0.8       1          120           100       41000     300      3000   # 5,0.0,5,2,170,250,450,250,Lockheed L-329 JetStar 2/731,F 
+LJ23   S     J      3     3000    2000     2.8      0.8       1          130           88        49999     450      4000   # 5,0.1,5,2,170,250,450,250,Lear  Jet 23,F 
+LJ24   L     J      3     3000    2000     2.8      1.2       0.8        120           95        49999     450      4000   # 5,0.0,5,2,170,250,450,250,Lear  Jet 24,F 
+LJ25   L     J      3     3000    2000     2.8      0.8       1          130           120       45000     450      5550   # 5,0.1,5,2,170,250,450,250,Lear  Jet 25,F 
+LJ28   S     J      3     3000    2000     2.8      0.8       1          130           120       45000     450      5550   # 5,0.1,5,2,170,250,450,250,Lear  Jet 28 29,F 
+LJ31   S     J      3     3000    2000     2.8      0.8       1          165           150       42000     450      5550   # 5,1.1,5,2,170,250,450,250,Lear  Jet 31,F 
+LJ35   S     J      3     3000    2000     2.8      0.8       1          165           150       42000     450      5550   # 5,2.4,5,2,170,250,450,250,Lear  Jet 35,F 
+LJ40   S     J      3     3000    2000     2.8      0.8       1          165           150       42000     450      5550   # 5,0.7,5,2,170,250,450,250,Lear  Jet 40,F 
+LJ45   S     J      3     3000    2000     2.8      0.8       1          130           98        49999     450      5070   # 5,3.3,5,2,170,250,450,250,Lear  Jet 45,F 
+LJ55   L     J      3     3000    2000     2.8      0.8       1          130           120       45000     450      5550   # 5,0.5,5,2,170,250,450,250,Lear  Jet 55,F 
+LJ60   L     J      3     3000    2000     2.8      0.8       1          130           120       45000     450      4550   # 5,2.4,5,2,170,250,450,250,Lear  Jet 60,F 
+LJ70   L     J      3     3500    2000     2.8      0.8       1          130           120       45000     450      3250   # 5,0.1,5,2,170,250,450,250,Lear  Jet 70,F
+LJ75   L     J      3     3500    2000     2.8      0.8       1          130           120       45000     450      3250   # 5,0.8,5,2,170,250,450,250,Lear  Jet 75,F
+LJ85   L     J      3     3500    2000     2.8      0.8       1          130           120       45000     450      3250   # 5,0.1,5,2,170,250,450,250,Lear  Jet 85,F
+MS76   S     J      3     1300    1300     3        1         0.4        130           100       25000     350      1500   # 5,0.1,5,2,170,250,330,250,Morane-Saulnier Paris MS-760,F 
+MU30   S     J      3     2500    2500     2.8      0.8       1          130           100       33600     400      3000   # 5,0.1,5,2,170,250,450,250,Mitsubishi Diamond MU-300,F 
+PC24   L     J      3     3300    3000     2.8      1.2       0.8        125           91        43000     385      3640   # 5,0.1,5,2,170,250,385,250,PILATUS PC-24,F
+PRM1   S     J      3     3000    3000     2.8      1.2       0.8        120           95        33600     400      3000   # 5,1.0,5,2,170,250,400,250,Raytheon Premier 1,F 
+S601   S     J      3     1500    1500     2.8      0.8       1          130           100       33000     325      3000   # 5,0.1,5,2,170,250,325,250,AEROSPATIALE  SN-601 Corvette,F 
+SBR1   L     J      3     3000    3000     2.8      0.8       1          130           100       45000     450      3250   # 5,0.2,5,2,170,250,450,250,"North American Saberliner N265-40, 50  60" F 
+SBR2   L     J      3     3000    3000     2.8      0.8       1          130           107       45000     450      3250   # 5,0.1,5,2,170,250,450,250,"North American Saberliner N265-75, 80" F 
+SF50   S     J      3     3000    3000     2.8      0.8       1          130           120       41000     350      3250   # 5,0.1,4,1,170,250,350,250,CIRRUS SF-50 Vision,F
+SJ30   L     J      3     3500    2000     2.8      0.8       1          130           120       45000     450      4550   # 5,0.0,5,2,170,250,450,250,Sino-Swearingen SJ-30,F 
+WW23   L     J      3     3000    3000     2.8      0.8       1          130           100       45000     450      3250   # 5,0.0,5,2,170,250,450,250,IAI 1123 Westwind,F 
+WW24   L     J      3     3000    3000     2.8      0.8       1          130           107       45000     450      3250   # 5,0.3,5,2,170,250,450,250,IAI 1124 Westwind,F 
+# Commercial Turboprops------------------------------------------------------------------------------------------
+AN12   L     P      3     1500    1500     2.5      0.8       1          110           90        24000     230      2200   # 6,0.0,3,1,170,230,230,230,ANTONOV  An-12, 
+AN24   L     P      3     1500    1500     2.5      0.8       1          110           90        27500     230      2200   # 6,0.1,3,1,170,230,230,230,ANTONOV  An-12,E 
+AT43   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,1.4,3,1,190,210,275,250,ATR-42-320,E 
+AT44   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,0.1,3,1,190,210,275,250,ATR  ATR-42-400,E 
+AT45   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,0.5,3,1,190,210,275,250,ATR-42-500,E 
+AT46   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,1.2,3,1,190,210,275,250,ATR-42-600,E 
+AT72   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,1.4,3,1,190,210,275,250,ATR  ATR-72-200,E 
+AT73   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,0.1,3,1,190,210,275,250,ATR  ATR-72-210,E 
+AT75   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,0.3,3,1,190,210,275,250,ATR  ATR-72-500,E 
+AT76   L     P      3     2000    2000     2.5      1         0.4        120           97        25000     275      2600   # 6,0.9,3,1,190,210,275,250,ATR  ATR-72-600,E 
+B18T   S     P      2     2000    2000     3        0.8       1          105           59        21000     170      1200   # 6,0.1,3,1,130,160,170,170,Beech Turbine 18,F 
+B190   S     P      3     1800    1800     3        1         0.4        120           97        25000     225      2600   # 6,8.4,3,1,150,210,225,225,Beech 1900,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+BE99   S     P      2     1050    1550     3        1         0.4        120           88        28080     200      2000   # 6,7.9,3,1,150,200,200,200,Beech 99 Airliner,F 
+C208   S     P      1     1050    800      3        1         0.4        105           70        15000     155     1000    # 6,33.5,2,0,90,140,155,155,Cessna Caravan 208,F 
+CVLP   L     P      3     1000    800      2.5      0.8       1          105           90        35000     180      1500   # 6,0.4,3,1,130,140,180,180,CONVAIR 54,E 
+CVLT   L     P      3     1500    1500     2.5      0.8       1          105           90        35000     210      1500   # 6,0.6,3,1,130,140,210,210,CONVAIR 58,E 
+D228   S     P      3     2000    2000     3        0.8       1          105           90        35000     264      1500   # 6,0.0,3,1,150,210,290,250,Dornier 228,E 
+D328   S     P      3     2000    2000     3        1         1          120           70        22750     300      1391   # 6,1.2,3,2,190,210,300,250,Dornier 328,E 
+DC6    L     P      3     1000    800      2.5      0.8       1          105           90        35000     230      1500   # 6,0.4,3,1,130,140,180,180,Douglas DC-6,E
+DHC7   L     P      3     1500    1500     3        0.8       0.8        130           110       42000     290      2600   # 6,3.2,3,1,150,210,290,250,DeHavilland DHC-7 ,E
+DH8A   L     P      3     1500    1500     2.5      0.8       0.8        130           110       42000     290      2600   # 6,3.2,3,1,150,240,290,250,DeHavilland DHC-8-100 Dash 8,E
+DH8B   L     P      3     1500    1500     2.5      1.2       1.2        140           102       25000     300      3120   # 6,3.1,3,1,150,240,300,250,DeHavilland DHC-8-200 Dash 8,E 
+DH8C   L     P      3     1500    1500     2.5      0.8       1          130           100       25000     310      2600   # 6,3.9,3,1,150,240,310,250,DeHavilland DHC-8-300 Dash 8,E 
+DH8D   L     P      3     1800    2000     2.5      0.8       1          130           100       25000     320      2600   # 6,16.2,3,1,150,240,320,250,DeHavilland DHC-8-400 Dash 8,E 
+E110   S     P      2     1500    1500     3        1         0.4        120           91        24080     230      1950   # 6,0.6,3,1,150,210,230,210,Embraer EMB-110 Bandierante,F 
+E120   S     P      3     1500    2000     2.5      1         1          120           70        22750     250      2000   # 6,2.2,3,1,150,210,250,250,Embraer EMB-120 Brasilia,F 
+F27    L     P      3     2000    3000     2.5      0.8       1          130           100       27000     280      2600   # 6,0.0,3,1,150,210,280,250,Fairchild Friendship F-27,F 
+F50    L     P      3     2000    3000     2.5      0.8       1          130           100       27000     280      2600   # 6,0.0,3,1,150,210,280,250,Fokker 50,F
+JS20   S     P      3     2200    2300     3        0.8       0.8        140           90        43000     230      2200   # 6,0.5,3,1,150,210,230,230,HANDLEY PAGE  HP-137 Jetstream 200,F 
+JS31   S     P      3     2000    2000     3        0.8       1          130           100       35000     302      2340   # 6,0.7,3,1,150,210,230,210,BAE Jetstream 31,F 
+JS32   S     P      3     2000    2000     3        0.8       1          140           121       35000     210      3120   # 6,0.4,3,1,150,210,210,210,BAE Super Jetstream 32,F 
+JS41   L     P      3     1500    1800     3        0.8       1          130           120       35000     250      3250   # 6,0.0,3,1,150,210,250,250,BAE Jetstream 41,F 
+L188   L     P      3     1500    1500     2.5      1         0.4        120           97        35000     230      1900   # 6,0.1,3,1,140,210,230,230,Lockheed Electra,E 
+SF34   L     P      3     1500    1500     2.5      0.8       1          130           95        35000     250      2000   # 6,8.5,3,1,120,170,250,250,SAAB-Fairchild SF-340,E 
+SGUP   L     P      3     1380    1380     2.0      1         1          120           89        19000     170      1391   # 6,0.1,3,1,130,160,170,170,Aero Spacelines Super Guppy,D 
+SH33   L     P      3     1200    1200     2.5      0.8       1          130           100       19000     170      1500   # 6,0.5,3,1,150,170,170,170,Short  330  Sherpa,E 
+SH36   L     P      3     1000    1000     2.5      1         0.4        120           80        19000     170      1300   # 6,2.3,3,1,120,170,170,170,Short 360,E 
+#Air Carrier Jet-----------------------------------------------------------------------------------------
+A19N   L     J      3     3000    2000     2.5      1         0.8        135           120       45000     450      3550    # 7,0.1,5,2,210,250,450,250,AIRBUS  A-319neo,D 
+A20N   L     J      3     3000    2000     2.5      1         0.8        135           120       45000     450      3550    # 7,0.1,5,2,210,250,450,250,AIRBUS  A-320neo,D 
+A21N   L     J      3     3000    2000     2.5      1         0.8        145           120       45000     450      3550    # 7,0.1,5,2,210,250,450,250,AIRBUS  A-321neo,D 
+A148   L     J      3     2000    2000     2.5      1         1          120           110       45000     450      3000    # 7,0.1,5,2,210,250,450,250,ANTONOV An-148,E 
+A158   L     J      3     2000    2000     2.5      1         1          120           110       45000     450      3000    # 7,0.1,5,2,210,250,450,250,ANTONOV An-158,E 
+A318   L     J      3     3000    2000     2.5      1         0.8        135           120       45000     450      3550    # 7,0.0,5,2,210,250,450,250,AIRBUS  A-318,D 
+A319   L     J      3     3000    2000     2.5      1         0.8        135           120       45000     450      3550    # 7,5.6,5,2,210,250,450,250,AIRBUS  A-319,D 
+A320   L     J      3     3000    2000     2.5      1         0.8        135           120       45000     450      3550    # 7,8.5,5,2,210,250,450,250,AIRBUS  A-320,D 
+A321   L     J      3     3000    2000     2.5      1         0.8        145           120       45000     450      3550    # 7,4.7,5,2,210,250,450,250,AIRBUS  A-321,D 
+B37M   L     J      3     3000    2000     2.5      1         0.8        130           110       35000     450      5550    # 7,0.1,6,2,210,250,450,250,Boeing 737-MAX7,D
+B38M   L     J      3     3000    2000     2.5      1         0.8        130           110       35000     450      5550    # 7,0.1,6,2,210,250,450,250,Boeing 737-MAX8,D 
+B39M   L     J      3     3000    2000     2.5      1         0.8        130           110       35000     450      5550    # 7,0.1,6,2,210,250,450,250,Boeing 737-MAX9,D  
+B461   L     J      3     3000    2000     2.5      1         1          120           110       45000     450      3000    # 7,0.1,5,2,210,250,450,250,BRITISH AEROSPACE  BAe-146-100,E 
+B462   L     J      3     3000    2000     2.5      1         1          120           110       45000     450      3000    # 7,0.1,5,2,210,250,450,250,BRITISH AEROSPACE  BAe-146-200,E 
+B463   L     J      3     3000    2000     2.5      1         1          120           110       45000     450      3000    # 7,0.1,5,2,210,250,450,250,BRITISH AEROSPACE  BAe-146-300,E 
+B712   L     J      3     3000    2000     2.5      1         0.8        139           110       45000     450      3250    # 7,2.2,5,2,210,250,450,250,Boeing 717-200,D 
+B721   L     J      3     3000    2000     2.5      1         0.8        124           110       45000     450      3250    # 7,0.1,5,2,210,250,450,250,Boeing 727-100,D 
+B722   L     J      3     3000    2000     2.5      1         0.8        133           110       45000     450      3250    # 7,0.1,5,2,210,250,450,250,Boeing 727-200,D 
+B732   L     J      3     3000    2000     2.5      1         0.8        129           110       35000     450      3250    # 7,0.0,4,2,210,250,450,250,Boeing 737-200,D 
+B733   L     J      3     3000    2000     2.5      1         0.8        135           110       35000     450      4550    # 7,1.9,5,2,210,250,450,250,Boeing 737-300,D 
+B734   L     J      3     3000    2000     2.5      1         0.8        139           110       35000     450      5550    # 7,0.3,6,2,210,250,450,250,Boeing 737-400,D 
+B735   L     J      3     3500    2000     2.5      1         0.8        128           110       35000     450      5550    # 7,0.1,5,2,210,250,450,250,Boeing 737-500,D 
+B736   L     J      3     3500    2000     2.5      1         0.8        125           110       35000     450      5550    # 7,0.1,5,2,210,250,450,250,Boeing 737-600,D 
+B737   L     J      3     3000    2000     2.5      1         0.8        130           110       35000     450      5550    # 7,12.1,6,2,210,250,450,250,Boeing 737-700  BBJ   C-40,D 
+B738   L     J      3     3000    2000     2.5      1         0.8        141           110       41000     450      5500    # 7,11.5,5,2,210,250,450,250,Boeing 737-800  BBJ2,D 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+B739   L     J      3     3000    2000     2.5      1         0.8        141           110       41000     450      5000    # 7,4.0,5,2,210,250,450,250,Boeing 737-900,D 
+B73Q   L     J      3     3000    2000     2.5      1         0.8        141           110       45000     450      4500    # 7,0.1,5,2,210,250,450,250,Boeing 737 Stage 3,D 
+B752   L     J      3     3000    2000     2.5      1         0.8        137           110       41000     450      4500    # 7,4.0,5,2,210,250,450,250,Boeing 757-200,D 
+BCS1   L     J      3     3000    2000     2.5      1         1          120           110       39000     450      2600    # 7,0.1,4,2,210,250,450,250,BOMBARDIER BD-500 CSeries CS100,D 
+BCS3   L     J      3     3000    2000     2.5      1         0.8        130           110       35000     450      3250    # 7,0.0,5,2,210,250,450,250,BOMBARDIER BD-500 CSeries CS300,D 
+CRJ1   L     J      3     2000    2000     2.5      0.8       1          135           110       41000     450      2800    # 7,0.1,4,2,210,250,450,250,Canadair CL-600 Regional Jet CRJ-100,E 
+CRJ2   L     J      3     2000    2000     2.5      0.8       0.8        135           110       41000     450      2800    # 7,9.3,4,2,210,250,450,250,Canadair CL-600 Regional Jet  CRJ-200,E 
+CRJ7   L     J      3     2300    2000     2.5      0.8       0.8        135           110       41000     450      3000    # 7,6.0,4,2,210,250,450,250,Canadair CL-600 Regional Jet  CRJ-700,E 
+CRJ9   L     J      3     2300    2000     2.5      0.8       0.8        135           120       41000     450      3000    # 7,6.2,4,2,210,250,450,250,Canadair CL-600 Regional Jet  CRJ-900,E 
+CRJX   L     J      3     2400    2000     2.5      0.8       0.8        135           120       41000     450      3000    # 7,0.1,4,2,210,250,450,250,Canadair CL-600 Regional Jet  CRJ-1000,E 
+DC91   L     J      3     2000    2000     2.5      0.8       0.8        132           110       41000     450      3000    # 7,0.0,4,2,210,250,450,250,McDonnell Douglas DC-9-10,D 
+DC92   L     J      3     2000    2000     2.5      0.8       0.8        130           110       41000     450      3000    # 7,0.1,4,2,210,250,450,250,McDonnell Douglas DC-9-20,D 
+DC93   L     J      3     2000    2000     2.5      0.8       0.8        133           110       39000     450      3000    # 7,0.0,4,2,210,250,450,250,McDonnell Douglas DC-9-30,D 
+DC94   L     J      3     2000    2000     2.5      0.8       0.8        131           110       39000     450      3000    # 7,0.1,4,2,210,250,450,250,McDonnell Douglas DC-9-40,D 
+DC95   L     J      3     2000    2000     2.5      0.8       0.8        135           110       39000     450      3000    # 7,0.1,4,2,210,250,450,250,McDonnell Douglas DC-9-50,D 
+E135   L     J      3     2200    2000     2.5      0.8       0.8        135           110       37000     450      3000    # 7,0.5,4,2,210,250,450,250,Embraer EMB-135,E
+E35L   L     J      3     2200    2000     2.5      0.8       0.8        135           110       37000     450      3000    # 7,0.0,4,2,210,250,450,250,Embraer Legacy, Legacy 600,650,E 
+E145   L     J      3     2200    2000     2.5      0.8       0.8        135           110       37000     450      2600    # 7,5.4,4,2,210,250,450,250,Embraer EMB-145  ERJ-145,E 
+E170   L     J      3     2000    2000     2.5      1         1          135           110       41000     450      3200    # 7,2.3,4,2,210,250,450,250,Embraer EMB-170  ERJ-170,E 
+E190   L     J      3     2000    2000     2.5      1         1          135           110       41000     450      3200    # 7,2.3,4,2,210,250,450,250,Embraer EMB-190  ERJ-190,D 
+E45X   L     J      3     2000    2000     2.5      0.8       0.8        135           110       39000     450      3500    # 7,1.3,4,2,210,250,450,250,Embraer E145XR,E 
+E75L   L     J      3     2000    2000     2.5      1         1          135           110       41000     450      3200    # 7,4.1,4,2,210,250,450,250,Embraer EMB-170-200 EMB-175 Long wing,E
+E75S   L     J      3     2000    2000     2.5      1         1          135           110       41000     450      3200    # 7,2.1,4,2,210,250,450,250,Embraer EMB-170-200 EMB-175 short wing,E
+F100   L     J      3     2000    2000     2.5      0.8       0.8        130           120       31000     450      3250    # 7,0.1,4,2,210,250,450,250,Fokker 100,D 
+F28    L     J      3     2000    2000     2.5      0.8       0.8        130           120       31000     450      3250    # 7,0.1,4,2,210,250,450,250,Fokker F28  Fellowship,E 
+J328   S     J      1     2000    2000     2.5      0.8       0.8        130           110       33600     400      3000    # 7,0.1,4,2,210,250,450,250,Fairchild Dornier 328Jet,F 
+MD81   L     J      3     2000    2000     2.5      0.8       0.8        134           110       41100     450      3250    # 7,0.1,5,2,210,250,400,250,McDonnell Douglas MD-81,D 
+MD82   L     J      3     2000    2000     2.5      0.8       0.8        134           110       41000     450      3250    # 7,0.3,5,2,210,250,450,250,McDonnell Douglas MD-82,D 
+MD83   L     J      3     2000    2000     2.5      0.8       0.8        144           110       41000     450      3250    # 7,1.0,5,2,210,250,450,250,McDonnell Douglas MD-83,D 
+MD87   L     J      3     3000    2000     2.5      0.8       0.8        134           110       41000     450      3250    # 7,0.0,5,2,210,250,450,250,McDonnell Douglas MD-87,D 
+MD88   L     J      3     3000    2000     2.5      1         0.4        144           110       41000     450      3200    # 7,2.7,5,2,210,250,450,250,McDonnell Douglas MD-88,D 
+MD90   L     J      3     3300    2000     2.5      1         0.4        138           110       41000     450      3300    # 7,1.1,5,2,210,250,450,250,McDonnell Douglas MD-90,D
+MRJ7   L     J      3     2000    2000     2.5      1         1          135           110       41000     450      3200    # 7,0.1,4,2,210,250,450,250,Mitsubishi MRJ-70,D 
+MRJ9   L     J      3     2000    2000     2.5      1         1          135           110       41000     450      3200    # 7,0.1,4,2,210,250,450,250,Mitsubishi MRJ-90,D  
+SU95   L     J      3     2000    2000     2.5      1         1          135           110       41000     450      3200    # 7,0.0,4,2,210,250,450,250,Sukhoi Superjet 100-95,E
+T154   L     J      3     3000    2000     2.5      0.8       0.8        130           120       37000     450      3900    # 7,0.1,4,0,70,100,290,250,Tupolev Tu-154,D 
+T204   L     J      3     3000    2000     2.5      0.8       0.8        130           120       41000     450      3900    # 7,0.1,4,0,70,100,290,250,Tupolev Tu-204,D 
+YK40   L     J      3     1800    1800     2.5      1         1          130           110       40000     450      3600    # 7,0.1,3,2,170,250,450,250,Yakovlev YAK-40,E 
+# Air Carrier Heavy-----------------------------------------------------------------------------------------
+A124   H     J      4     2000    2000     2.5      0.9       0.8        130           120       35000     450      3000    # 8,0.0,3,1,190,250,450,250,Antonov AN-124 Ruslan,B 
+A306   H     J      4     2500    2000     2.5      0.9       0.8        130           120       45000     450      3250    # 8,10.7,4,1,190,250,450,250,Airbus A300B4-600,C 
+A30B   H     J      4     2500    2000     2.5      0.9       0.8        130           120       43000     450      3250    # 8,0.0,4,1,190,250,450,250,Airbus A300B2-100/200,C 
+A310   H     J      4     2500    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,0.8,4,1,190,250,450,250,AIRBUS  A-310,C 
+A332   H     J      4     2500    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,6.9,4,1,190,250,450,250,AIRBUS  A-330-200  or KC-30,B 
+A333   H     J      4     2500    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,4.7,4,1,190,250,450,250,AIRBUS  A-330-300,B
+A339   H     J      4     2500    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,4.7,4,1,190,250,450,250,AIRBUS  A-330-900,B  
+A342   H     J      4     2500    2000     2.5      0.9       0.8        145           120       48000     450      3250    # 8,0.1,4,1,190,250,450,250,AIRBUS  A-340-200,B 
+A343   H     J      4     2500    2000     2.5      0.9       0.8        145           120       48000     450      3250    # 8,0.7,4,1,190,250,450,250,AIRBUS  A-340-300,B 
+A345   H     J      4     2500    2000     2.5      0.9       0.8        150           120       48000     450      3250    # 8,0.1,4,1,190,250,450,250,AIRBUS  A-340-500,B 
+A346   H     J      4     2500    2000     2.5      0.9       0.8        150           120       48000     450      3250    # 8,1.0,4,1,190,250,450,250,AIRBUS  A-340-600,B 
+A35K   H     J      2     2500    2000     2.5      0.9       0.8        150           120       48000     450      3250    # 8,0.1,4,1,190,250,450,250,AIRBUS  A-350-1000 XWB,B 
+A359   H     J      2     2500    2000     2.5      0.9       0.8        150           120       48000     450      3250    # 8,0.4,4,1,190,250,450,250,AIRBUS  A-350-900 XWB Prestige,B 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+A388   H     J      4     2500    2000     2.3      0.9       0.8        145           120       43000     450      3500    # 8,1.7,4,1,190,250,450,250,AIRBUS  A-380-800,A 
+A3ST   H     J      4     2500    2000     2.5      0.9       0.8        140           120       43000     450      3500    # 8,0.1,4,1,190,250,450,250,AIRBUS  Super Transporter Beluga,B 
+B701   H     J      4     2000    2000     2.5      0.9       0.8        130           120       45000     450      3900    # 8,0.1,4,1,190,250,450,250,Boeing 707-100,C 
+B741   H     J      4     2500    2000     2.5      0.9       0.8        144           120       45000     450      3250    # 8,0.1,4,1,190,250,450,250,Boeing 747-100,B 
+B742   H     J      4     3000    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,0.2,4,1,190,250,450,250,Boeing 747-200,B 
+B743   H     J      4     3000    2000     2.5      0.9       0.8        141           120       45000     450      3250    # 8,0.1,4,1,190,250,450,250,Boeing 747-300,B 
+B744   H     J      4     3000    2000     2.5      0.9       0.8        147           120       45000     450      3250    # 8,6.1,4,1,190,250,450,250,Boeing 747-400,B 
+B748   H     J      4     3000    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,2.2,4,1,190,250,450,250,Boeing 747-8,B 
+B74S   H     J      4     3000    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,0.0,4,1,190,250,450,250,BOEING  747SP,B 
+B753   H     J      3     3500    2000     2.5      0.9       0.8        143           120       45000     450      3600    # 8,2.8,5,2,210,250,450,250,Boeing 757-300,D 
+B762   H     J      4     3500    2000     2.5      0.9       0.8        135           120       45000     450      3250    # 8,2.5,4,1,190,250,450,250,Boeing 767-200,C 
+B763   H     J      4     3500    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,19.5,4,1,190,250,450,250,Boeing 767-300,C 
+B764   H     J      4     3500    2000     2.5      0.9       0.8        140           120       45000     450      3250    # 8,1.9,4,1,190,250,450,250,Boeing 767-400,C 
+B772   H     J      4     3000    2000     2.5      0.9       0.8        136           120       45000     450      3250    # 8,8.1,4,1,190,250,450,250,Boeing 777-200,B 
+B773   H     J      4     3000    2000     2.5      0.9       0.8        149           120       45000     450      3250    # 8,0.1,4,1,190,250,450,250,Boeing 777-300,B 
+B77L   H     J      4     3000    2000     2.5      0.9       0.8        140           120       43000     450      3250    # 8,3.5,4,1,190,250,450,250,Boeing B-777-200,B 
+B77W   H     J      4     3000    2000     2.5      0.9       0.8        149           120       45000     450      3250    # 8,9.1,4,1,190,250,450,250,BOEING  777-300ER,B 
+B783   H     J      4     3000    2000     2.5      0.9       0.8        140           120       43000     450      3250    # 8,0.1,4,1,190,250,450,250,BOEING  787-3 Dreamliner,C 
+B788   H     J      4     3000    2000     2.5      0.9       0.8        140           120       43000     450      3250    # 8,4.4,4,1,190,250,450,250,BOEING  787-8 Dreamliner,C 
+B789   H     J      4     3000    2000     2.5      0.9       0.8        140           120       43000     450      3250    # 8,2.9,4,1,190,250,450,250,BOEING  787-9 Dreamliner,C 
+BLCF   H     J      4     3000    2000     2.5      0.9       0.8        130           120       45000     450      3250    # 8,0.1,4,1,190,250,450,250,BOEING  747-400LCF Dreamlifter,B 
+BSCA   H     J      4     3000    2000     2.5      0.9       0.8        130           120       45000     450      3250    # 8,0.0,4,1,190,250,450,250,BOEING  747SCA Shuttle Carrier,B 
+DC10   H     J      4     2400    2000     2.5      0.9       0.8        149           120       39000     450      2600    # 8,3.6,4,1,190,250,450,250,McDonnell Douglas DC-10,C 
+DC85   H     J      4     3000    2000     2.5      0.9       0.8        137           120       42000     450      2600    # 8,0.1,4,1,190,250,450,250,DOUGLAS  DC-8-50,C 
+DC86   H     J      4     2900    2000     2.5      0.9       0.8        144           120       39000     450      3120    # 8,0.1,4,1,190,210,450,250,McDonnell Douglas DC-8-60,C 
+DC87   H     J      4     2900    2000     2.5      0.9       0.8        140           120       39000     450      3000    # 8,0.0,4,1,190,250,450,250,McDonnell Douglas DC-8-70,C 
+IL76   H     J      4     2500    2000     2.5      0.9       0.8        130           120       45000     450      3250    # 8,0.0,4,1,190,250,450,250,ILYUSHIN  Il-76,C 
+IL96   H     J      4     2500    2000     2.5      0.9       0.8        130           120       45000     450      3250    # 8,0.1,4,1,190,250,450,250,ILYUSHIN  Il-96,B 
+L101   H     J      4     1800    2000     2.5      0.9       0.8        135           120       45000     450      3120    # 8,0.1,4,1,190,250,450,250,Lockheed TriStar L-1011,C 
+MD11   H     J      4     3000    2000     2.5      0.9       0.8        153           120       43000     450      3250    # 8,6.0,4,1,190,250,450,250,McDonnell Douglas MD-11,C 
+#Mil Jets------------------------------------------------------------------------------------------
+A10    L     J      3     2000    2000     3        1         0.8        130           100       33000     325      1950   # 9,3.0,5,2,170,250,325,220,Fairchild A-10 Warthog, 
+A6     L     J      3     2500    5000     3        1         0.7        130           120       45000     499      3250   # 9,0.3,5,2,170,250,500,250,Grumman A-6 Intruder  EA-6B Prowler,E 
+AJET   L     J      3     1800    1200     3        1         0.7        120           120       35000     500      2600   # 9,0.2,5,2,170,250,500,250,Dornier AlphaJet,F 
+AMX    S     J      3     2250    3000     3        1         0.7        115           120       35000     400      2600   # 9,0.1,5,2,190,250,400,200,AERITALIA  AMX Ghibli,F 
+CL41   S     J      3     1500    1500     3        1         0.7        105           120       28000     264      2600   # 9,0.1,5,2,190,250,264,250,CANADAIR  CL-41 Tutor,F 
+E737   L     J      3     2000    2000     3        1         0.7        130           120       35000     450      3250   # 9,0.1,6,2,210,250,450,250,Boeing 737-700  Wedgetail AEWC,D 
+ETAR   L     J      3     1800    1200     3        1         0.7        110           120       35000     500      2600   # 9,0.1,5,2,190,250,450,250,DASSAULT  Super Etendard,F 
+EUFI   L     J      3     9000    4000     3        2         0.8        160           120       60000     800      10000  # 9,0.1,5,2,250,290,500,280,BAE/Alenia/CASA Eurofighter/Typhoon,E
+F1     S     J      3     4000    3000     3        1         0.7        130           120       31000     500      3250   # 9,0.1,5,2,190,250,400,230,MITSUBISHI  F-1,F 
+F15    L     J      3     8000    5000     3        2.0       0.7        160           120       50000     500      10000  # 9,7.4,5,2,250,290,500,280,McDonnell Douglas F-15 Eagle,E 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+F16    L     J      3     8000    4000     3        1.5       0.7        160           120       50000     800      5200   # 9,11.4,5,2,250,290,500,280,General Dynamics F-16 Fighting Falcon,E 
+F18H   L     J      3     8000    4000     3        1.5       1.0        130           120       41000     500      3250   # 9,8.5,5,2,250,250,500,250,McDonnell Douglas F-18A,B,C,D, CF-188 Hornet,E 
+F18S   L     J      3     8000    4000     3        1.5       1.0        130           120       41000     500      3250   # 9,23.1,5,2,250,250,500,250,Boeing F-18E,F, Super Hornet, Growler,E 
+F2     L     J      3     8000    4000     3        1         0.7        130           120       41000     500      3250   # 9,0.1,5,2,250,290,500,250,Mitsubishi F2, 
+F22    L     J      3     9000    4000     3        2         0.8        160           120       60000     800      10000  # 9,2.0,5,2,250,290,500,280,Boeing F-22 Raptor,E 
+F35    L     J      3     9000    4000     3        2         0.8        160           120       60000     800      10000  # 9,3.3,5,2,250,290,500,280,Lockheed-Martin F-35A F-35C Lightning II,E 
+F5     S     J      3     8000    4000     3        1.3       0.8        130           120       31000     500      3250   # 9,1.1,5,2,230,310,500,270,Northrop F-5 Freedom Fighter,F 
+HAR    L     J      3     2500    2000     3        0.8       0.7        170           130       39000     400      2600   # 9,0.3,5,2,230,250,400,270,McDonnell Douglas AV-8B Harrier,F 
+HAWK   S     J      3     2500    2000     3        1         0.7        130           83        42500     350      3380   # 9,4.4,5,2,170,250,350,250,T-45 Goshawk,F 
+KFIR   L     J      3     1800    1200     3        1.5       0.7        130           120       35000     500      2600   # 9,0.1,5,2,190,250,400,250,IAI Kfir,E 
+M346   S     J      3     2500    2000     3        1         0.7        130           83        42500     550      3380   # 9,0.1,5,2,170,250,350,250,ALENIA AERMACCHI Master  M346,F 
+MIR2   L     J      3     1800    1200     3        1.2       0.7        150           120       35000     500      2600   # 9,0.1,5,2,190,250,400,270,DASSAULT  Mirage 2000,E 
+MIRA   L     J      3     750     750      3        1.2       0.7        150           120       41000     434      2210   # 9,0.1,5,2,190,250,400,270,DASSAULT  Mirage 5,E 
+P8     L     J      3     2000    2000     3        1         0.8        130           120       41000     450      3250   # 9,2.5,5,2,210,250,450,250,Boeing 737-800  P-8 Poseidon,D 
+S211   S     J      3     1100    1100     3        1         0.7        110           120       40000     400      4000   # 9,0.1,5,2,190,250,400,250,SIAI-Marchetti  S-211,F 
+S3     L     J      3     1500    1500     3        1         0.8        130           120       29500     262      2860   # 9,0.1,5,2,250,250,250,250,Lockheed S-3A Viking,E 
+SB39   S     J      3     2000    2000     3        1         0.7        150           120       45100     700      6000   # 9,0.1,5,2,190,250,400,280,Saab JAS39 Gripen,E 
+T38    L     J      3     2500    2700     3        1.3       0.7        150           120       45000     400      6000   # 9,31.1,4,2,170,280,350,280,Northrop T-38 Talon,F 
+TOR    L     J      3     4000    4000     3        1.5       0.7        130           120       33000     800      6000   # 9,0.1,5,2,190,250,400,250,Panavia Tornado,E 
+U2     L     J      2     2000    2000     3        0.8       0.7        95            70        70000     350      3000   # 9,1.1,3,1,110,210,350,250,U-2,F 
+VF35   L     J      3     9000    4000     3        2         0.8        160           120       60000     800      10000  # 9,2.3,5,2,250,290,500,280,Lockheed-Martin F-35B Lightning II,E
+WB57   L     J      3     4000    3500     3        0.8       0.8        130           120       60000     325      4000   # 9,0.1,1,0,140,210,290,250,Martin WB-57,E 
+#Mil Props------------------------------------------------------------------------------------------
+AN26   L     P      3     1500    1500     3        0.8       0.7        130           110       24600     237      2000   # 10,0.1,3,1,150,210,237,237,Antonov 26,E 
+C130   L     P      3     1500    1500     3        1.1       0.7        130           100       33000     310      1950   # 10,16.0,3,1,150,210,310,250,Lockheed C-130 Hercules,E 
+C160   L     P      3     2000    2000     3        1.1       0.7        130           85        26000     250      2600   # 10,0.1,3,1,150,210,250,250,TRANSALL  C-160,E 
+C2     L     P      3     1500    1500     3        1.1       0.7        120           85        26000     250      2000   # 10,1.6,3,1,140,210,250,250,Grumman C-2 Greyhound,F 
+C27J   L     P      3     2500    2500     3        1.1       0.7        120           100       33000     290      3000   # 10,1.8,3,1,150,210,290,250,Alenia C-27J Spartan,F 
+C30J   L     P      3     2000    2000     3        1.1       0.7        130           130       30000     350      4000   # 10,10.6,3,1,150,210,290,250,Lockheed C-130J Hercules,E 
+CN35   L     P      3     1700    1700     3        0.8       0.7        120           100       25000     240      1700   # 10,0.3,3,1,150,210,240,250,"CASA CN-235, HC-144 Ocean Sentry" F 
+E2     L     P      3     2690    3000     3        1         0.7        120           70        22750     187      1391   # 10,2.5,3,1,140,210,290,250,Grumman E-2 Hawkeye,F 
+M28    L     P      3     2500    2500     3        1.1       0.7        110           100       24000     200      3000   # 10,13.3,3,1,150,210,200,200,PZL M-28 Skytruck,F 
+P3     L     P      1     2000    2000     3        1.1       0.7        130           130       33000     250      2500   # 10,3.4,3,1,160,210,250,250,LockheedP-3 Orion,E 
+PC7    S     P      3     1500    1500     3        1.1       0.7        100           64        20000     170      2150   # 10,0.1,3,1,90,110,170,170,Pilatus Turbo Trainer,F 
+PC9    S     P      3     750     1000     3        1.1       0.7        110           120       33000     280      2600   # 10,0.1,4,2,150,200,280,250,Pilatus PC-9,F 
+T34P   S     P      3     1100    1000     3        0.8       0.7        90            80        20000     140      2600   # 10,0.1,3,1,110,140,140,140,Beechcraft Mentor Prop,F 
+TEX2   S     P      3     1800    2000     3        1.3       0.8        110           90        35900     290      2340   # 10,62.1,3,1,130,210,290,250,Raytheon Texan 2,F 
+#Mil Heavy------------------------------------------------------------------------------------------
+A400   H     J      4     2000    2000     2.5      0.8       0.8        130           120       43000     350      3250   # 11,0.3,4,1,170,230,350,250,AIRBUS  A-400M,C 
+B1     H     J      4     3000    2000     2.5      1.2       0.8        130           120       45000     450      3900   # 11,2.2,4,2,250,250,500,270,B-1 Lancer,C 
+B2     H     J      4     2000    2000     2.5      1.2       0.8        140           120       45000     450      3250   # 11,1.1,4,1,210,250,450,250,Northrop B-2 Spirit,C 
+B52    H     J      4     2000    2000     2.5      1         0.8        130           120       45000     450      3900   # 11,7.6,4,1,210,250,450,250,Boeing B52 Stratofortress,B 
+B703   H     J      4     2000    2000     2.5      1         0.8        130           120       45000     450      3900   # 11,4.7,4,1,210,250,450,250,Boeing J-STARS,C 
+C17    H     J      4     2000    2000     3        1         0.8        130           120       45000     450      3250   # 11,36.9,4,1,210,250,450,250,Boeing C-17 Globemaster 3,B 
+C5     H     J      4     2000    2000     2.5      0.9       0.8        130           120       45000     450      3380   # 11,5.7,3,1,210,250,450,250,Lockheed C5 Galaxy,B 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+C5M    H     J      4     2000    2000     2.5      0.9       0.8        130           120       45000     450      3380   # 12,0.1,3,1,210,250,450,250,Lockheed C5M Super Galaxy,B 
+E3CF   H     J      4     2000    2000     2.5      0.8       0.8        130           120       31000     450      3250   # 11,0.1,4,1,210,250,450,250,Boeing E-3 Sentry,C 
+E3TF   H     J      4     2000    2000     2.5      0.8       0.8        130           120       31000     450      3250   # 11,2.9,4,1,210,250,450,250,Boeing E-3 Sentry,C 
+E6     H     J      4     2000    2000     2.5      0.8       0.8        130           120       39000     450      3250   # 11,4.7,4,1,210,250,450,250,Boeing E-6 Mercury,C 
+E767   H     J      4     2000    2000     2.5      1         0.4        120           120       29600     450      3250   # 11,0.1,4,1,210,250,450,250,Boeing E-767 AEWC (JASDF),C 
+K35E   H     J      4     2000    2000     2.5      0.8       0.8        130           120       45000     450      3250   # 11,0.6,4,1,210,250,450,250,Boeing KC135E Stratotanker,C 
+K35R   H     J      4     2000    2000     2.5      0.8       0.8        130           120       42000     450      3250   # 11,33.3,4,1,210,250,450,250,Boeing KC135R Stratotanker,C 
+VC10   H     J      4     2000    2000     2.5      0.8       0.8        130           120       42000     450      3250   # 11,0.1,2,1,120,140,250,250,Vickers VC-10,C 
+#Mil Helicopters------------------------------------------------------------------------------------------
+AS32   S     P      1     1250    1500     3        1         0.4        90            0         12500     130      1600   # 12,0.1,1,1,80,110,130,130,AEROSPATIALE  AS-332L Tiger AS-332M Super Puma,F 
+AS65   S     P      1     1300    1300     3        0.8       1          90            0         12500     140      1300   # 12,3.9,1,1,60,110,130,140,HH-65 Dolphin,F 
+EC45   S     P      1     1500    1500     3        0.8       1          90            0         12000     110      1500   # 11,10.3,1,1,60,110,110,110,Eurocopter EC-135,F 
+H46    L     P      1     1300    1300     3        0.8       1          90            0         12500     130      1300   # 12,0.1,1,1,80,110,130,130,Boeing Vertol UH-46 Sea Knight,F 
+H47    L     P      1     1300    1300     3        0.8       1          90            0         12500     130      1300   # 12,12.0,1,1,80,110,130,130,Boeing Vertol UH-47 Chinook,F 
+H53    L     P      1     1300    1300     3        0.8       1          90            0         12500     130      1300   # 12,2.1,1,1,80,110,130,130,HH-53 Jolly Green Giant,F 
+H60    S     P      1     1300    1300     3        0.8       1          90            0         12000     130      1300   # 12,61.1,1,1,80,110,130,130,UH-60 Blackhawk  HH-60Seahawk,F 
+H64    S     P      1     1300    1300     3        0.8       1          90            0         12500     130      1300   # 12,9.7,1,1,80,110,130,130,Boeing AH-64 Apache,F 
+HUCO   S     P      1     1300    1300     3        0.8       1          90            0         12500     120      1300   # 12,0.1,1,1,60,110,130,130,Firewatch Cobra (USFS),F 
+PUMA   L     P      1     1300    1300     3        1         1          90            0         14700     130      1300   # 12,0.1,1,1,80,110,130,130,AEROSPATIALE  SA-330 Puma,F 
+S65C   S     P      1     1300    1300     3        1         1          90            0         12650     130      1300   # 12,2.5,1,1,80,110,130,130,AEROSPATIALE  SA-365C Dauphin 2,F
+S97    L     P      1     2000    2000     3        0.8       1          70            0         10000     210      2600   # 12,0.0,3,1,60,190,210,210,Sikorsky S-97 Raider,F  
+SUCO   S     P      3     1000    1000     3        1         1          90            0         15000     130      1500   # 12,0.3,1,0,60,70,110,110,AH-1W/Z SuperCobra,F 
+UH1    S     P      1     1300    1300     3        0.8       0.8        100           0         12500     110      1300   # 12,1.6,3,1,60,100,110,110,UH-1 Huey,F 
+V22    L     P      1     2000    2000     3        0.8       1          70            0         26000     210      2600   # 12,6.7,3,1,60,190,210,210,V22 Osprey,F 
+# Warbird Props------------------------------------------------------------------------------------------
+A1     S     P      3     1000    1000     3        1         0.4        120           97        14500     180      1200   # 15,0.1,1,1,100,140,180,180,DOUGLAS  Skyraider,F 
+B17    L     P      3     900     900      3        0.6       0.4        100           97        12500     160      1000   # 15,0.1,1,1,120,160,160,160,B-17 Flying Fortress,E 
+B24    L     P      3     1000    1000     3        0.6       0.4        110           97        14500     170      1100   # 15,0.1,1,1,120,160,170,170,CONSOLIDATED  B-24 Liberator,E 
+B25    L     P      3     980     980      3        0.7       0.4        110           97        14500     215      1000   # 15,0.1,3,1,110,180,215,215,North American B-25 Mitchell,F 
+B26    L     P      3     1000    1000     3        0.7       0.4        110           97        14500     230      1000   # 15,0.1,3,1,130,190,230,230,Douglas B-26 Invader,F 
+B26M   S     P      3     1000    1000     3        0.7       0.4        110           97        14500     230      1200   # 15,0.1,3,1,120,210,230,230,MARTIN  B-26 Marauder,F 
+C119   L     P      3     750     750      3        0.6       0.8        110           120       12500     170      1000   # 15,0.1,2,1,120,160,170,170,Fairchild C119 Flying Boxcar,F 
+C46    L     P      3     600     700      3        0.5       1          110           83        14500     180      1500   # 15,0.1,2,1,120,160,180,180,Curtiss C-46 Commando,F 
+CAT    S     P      3     600     600      3        0.5       0.8        105           90        12500     170      2600   # 15,0.1,1,1,120,160,170,170,CONSOLIDATED  Catalina,F 
+FA62   S     P      1     650     650      3        0.8       0.8        100           100       12500     170      800    # 15,0.1,3,1,120,160,170,170,FAIRCHILD PT-19 Cornell M-62,F 
+FFLY   S     P      1     800     800      3        0.8       0.8        100           85        12500     160      1000   # 15,0.1,3,1,120,160,160,160,Fairey Firefly,F 
+FURY   S     P      1     800     800      3        0.8       0.8        100           85        12500     160      1000   # 15,0.1,3,1,120,160,160,160,Hawker Sea Fury,F 
+HCAT   S     P      1     800     800      3        0.8       0.8        100           85        12500     170      1000   # 15,0.1,3,1,120,160,170,170,GRUMMAN  F6F Hellcat,F 
+L37    S     P      1     800     800      3        0.8       0.8        100           85        12500     170      1400   # 15,0.1,3,1,120,160,170,170,Lockheed PV-2 Harpoon,F 
+ME09   S     P      3     1200    1200     3        0.8       0.8        120           100       14500     210      1200   # 15,0.1,3,1,120,160,210,210,MESSERSCHMITT  Bf-109,F 
+P38    S     P      1     1200    1200     3        0.8       0.8        120           120       14500     210      1200   # 15,5.0,3,1,120,160,210,210,Lockheed P-38 Lightning,F 
+P51    S     P      1     800     1000     3        0.8       0.8        130           110       14500     230      1550   # 15,0.1,3,1,150,150,230,230,North American Mustang,F 
+T28    S     P      3     1000    1000     3        0.8       0.8        130           100       14500     165      1550   # 15,0.1,5,2,170,250,165,165,North American T-28 Trojan,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+T50    S     P      1     800     800      3        0.8       0.8        110           85        12500     140      900    # 15,0.1,3,1,100,140,140,140,Cessna T-50  AT-17,F 
+T6     S     P      1     800     1000     3        1         0.4        110           105       15000     140      1300   # 15,15.0,2,1,100,140,140,140,North American T-6 Texan,F 
+TCAT   S     P      2     1250    1500     3        0.8       0.8        110           120       14500     140      1550   # 15,0.1,3,1,100,140,140,140,Grumman F7F Tigercat,F 
+V1     S     P      2     1200    1200     3        0.8       0.8        120           120       12500     190      1200   # 15,0.1,3,1,100,140,140,140,Grumman OV-1 Mohawk,F 
+ZERO   S     P      1     1200    1200     3        0.8       0.8        105           105       15000     220      1200   # 15,0.1,3,1,120,170,450,250,Mitsubishi Zero,F 
+# Warbird Jets------------------------------------------------------------------------------------------
+A4     L     J      3     3000    3000     3        1.5       1          140           120       45000     500      3200   # 16,20.0,5,2,170,250,500,250,Douglas  A-4 Skyhawk,F 
+F4     L     J      3     3000    3000     3        1.5       1          150           110       45000     500      3200   # 16,0.1,5,2,230,250,500,250,McDonnell Douglas F-4 Phantom II,F 
+F86    L     J      3     2000    2000     3        1.5       1          150           110       45000     500      2200   # 16,0.1,5,2,210,250,290,250,North American F-86 Sabre,F 
+FOUG   S     J      3     3000    3000     3        1.5       1          150           110       45000     250      3000   # 16,0.1,5,2,170,220,230,230,Fouga CM-170 Magister,F 
+HUNT   L     J      3     1500    1500     3        0.8       0.8        140           121       45000     500      3120   # 16,10.0,5,2,170,250,500,250,Hawker Hunter,F 
+STRK   L     J      3     1500    1500     3        0.8       0.8        140           121       25000     350      3120   # 16,0.1,5,2,170,250,500,250,BAC Strikemaster,F
+L159   S     J      3     1500    1500     3        0.8       0.8        130           100       33600     302      2340   # 16,5.0,5,2,170,250,500,250,Czech L-159 Albatross,F  
+L29    S     J      3     4000    3500     3        0.8       0.8        130           100       33600     302      2340   # 16,0.1,5,2,170,250,500,250,Let Delfin,F 
+L39    S     J      3     1500    1500     3        0.8       0.8        130           100       33600     302      2340   # 16,50.0,5,2,170,250,500,250,Czech L-39 Albatross,F 
+ME62   S     J      3     650     1000     3        1         0.4        110           50        30000     300      3000   # 16,0.1,5,2,170,220,230,230,MESSERSCHMITT  Me-262 Replica,F
+MG17   S     J      3     650     1000     3        1         0.4        140           50        30000     400      3000   # 16,0.1,5,2,170,220,400,230,Mikoyan-Gurevich MiG-17,F  
+MG21   S     J      3     650     1000     3        1         0.4        140           50        30000     400      3000   # 16,0.1,5,2,170,220,400,230,Mikoyan-Gurevich MiG-21,F 
+SB35   L     J      3     2000    2000     3        1         1          150           85        65000     500      2500   # 16,0.1,5,2,170,250,500,250,Saab 35 Draken,F 
+SSAB   L     J      3     2000    2000     3        1.5       1          150           110       45000     500      2200   # 16,0.1,5,2,210,250,290,250,North American F-100 Super Sabre,F 
+T2     S     J      3     1150    1150     3        0.8       0.8        130           100       33000     325      1950   # 16,0.1,5,2,210,250,290,250,North American T-2 Buckeye,F 
+T33    L     J      1     1150    1150     3        0.8       0.8        130           100       33000     230      1950   # 16,20.0,3,1,210,230,230,230,Lockheed T-33 Shooting Star,F 
+# Agricultural------------------------------------------------------------------------------------------
+AT2P   S     P      1     1000    1000     3        0.8       1          90            59        12500     110      1200   # 17,0.1,1,1,90,120,130,130,AIR TRACTOR  AT-250,F
+AT3P   S     P      1     1000    1000     3        0.8       1          90            59        12500     110      1200   # 17,0.1,1,1,90,120,130,130,AIR TRACTOR  AT-300,F 
+AT3T   S     P      1     1000    1000     3        1         1          90            73        12500     110      1200   # 17,0.1,1,1,90,120,130,130,AIR TRACTOR  AT-302,F 
+AT5P   S     P      1     1000    1000     3        1         1          90            65        12500     110      1200   # 17,0.1,1,1,90,120,130,130,AIR TRACTOR  AT-501,F 
+AT5T   S     P      1     1300    1300     3        1         1          90            65        12500     110      2000   # 17,0.1,1,1,90,120,130,130,AIR TRACTOR  AT-503,F 
+AT6T   S     P      1     1300    1300     3        1         1          90            65        12500     110      2000   # 17,0.1,1,1,90,120,130,130,AIR TRACTOR  AT-602,F 
+C188   S     P      1     1000    1000     3        1         1          90            65        12500     110      3380   # 17,0.1,1,1,90,120,130,130,CESSNA  AgWagon,F 
+G164   S     P      1     1500    1500     3        0.8       1          90            65        12500     110      2340   # 17,0.1,1,0,90,120,130,130,GRUMMAN  G-164 Super Ag-Cat,F 
+G64T   S     P      1     1500    1500     3        0.8       1          90            65        12500     110      2600   # 17,0.1,1,0,90,120,130,130,AG-CAT  Super Turbine,F 
+PA25   S     P      2     1500    1500     3        1         1          90            65        15000     110      1000   # 17,0.1,1,0,70,100,120,120,Piper Pawnee,F 
+PA36   S     P      1     750     750      3        1         1          90            65        12500     110      2210   # 17,0.1,1,0,90,120,130,130,PIPER  PA-36 Pawnee Brave,F 
+SS2P   S     P      1     900     900      3        0.8       1          90            60        12500     110      1200   # 17,0.1,1,0,90,120,130,130,Aero Commander Ag Commander  Thrush,F 
+# Fire Fighters------------------------------------------------------------------------------------------
+AT8T   S     P      3     1300    1300     3        1         1          100           100       12500     140      2000   # 18,0.1,1,1,90,120,140,140,AIR TRACTOR  AT-802 Fire Boss,F 
+CL2T   L     P      3     1000    1200     3        1         1          120           100       12500     180      1500   # 18,0.1,1,1,110,180,180,180,Canadair CL-215 SuperScooper,F 
+CL2P   L     P      3     1000    1200     3        1         1          120           100       12500     160      1500   # 18,0.1,1,1,110,160,160,160,Canadair CL-215 ,F 
+S2P    S     P      3     2100    2000     3        1         1          120           100       12500     130      1500   # 18,0.1,1,1,110,130,130,130,Grumman S-2 Firecat,F 
+S2T    S     J      3     2000    2000     3        1         1          120           100       12500     140      1500   # 18,0.1,1,1,140,140,140,140,Grumman S-2T Turbo Firecat,F 
+V10    S     P      2     1500    1500     3        1         1          120           100       30000     180      3250   # 18,0.1,1,1,80,110,130,180,North American Bronco,F 
+# Seaplanes------------------------------------------------------------------------------------------
+FN33   S     P      1     1500    1500     3        1         0.4        100           100       15000     120      1000   # 19,0.1,1,0,70,100,120,120,NARDI RIVIERA FN333,F 
+G21    S     P      3     1000    1000     3        1         0.4        110           100       12500     130      2340   # 19,0.1,1,1,90,140,130,130,GRUMMAN  G-21A Goose,F
+G21T   S     P      3     1200    1200     3        1         0.4        110           100       12500     150      2340   # 19,0.1,1,1,90,140,130,130,GRUMMAN  G-21T Turbo Goose,F 
+G44    S     P      3     1000    1500     3        0.8       0.4        110           100       12500     130      3250   # 19,0.1,1,1,90,140,130,130,GRUMMAN  G-44 Widgeon,F 
+LA25   S     P      1     800     800      3        0.8       0.4        100           80        15000     140      1000   # 19,0.1,1,1,80,110,130,140,Lake Renegade,F 
+LA4    S     P      1     800     800      3        0.8       0.4        100           80        15000     130      1000   # 19,1.0,1,1,80,110,130,130,Lake LA-4 Buccaneer,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+MARS   L     P      3     800     800      3        0.6       0.4        110           100       12500     150      1000   # 19,0.1,1,0,90,120,150,150,Martin Mars ,E 
+U16    S     P      3     6000    6000     3        1         0.4        110           100       12500     130      1950   # 19,0.1,1,0,90,140,130,130,Grumman HU-16 Albatross, 
+# Tail Draggers------------------------------------------------------------------------------------------
+ALBU   S     P      1     500     500      3        1         0.4        80            39        12500     110      1200   # 20,0.1,1,0,60,90,90,90,AVIATION DEVELOPMENT  Alaskan Bushmaster,F 
+AN2    S     P      1     500     500      3        1         0.4        80            26        12500     110      600    # 20,0.1,1,0,60,90,90,90,ANTONOV  An-2,F 
+AR11   S     P      1     500     500      3        1         0.4        80            59        12500     110      700    # 20,0.1,1,0,60,90,120,120,Aeronca Chief,F
+AR15   S     P      1     500     500      3        1         0.4        80            50        12500     110      700    # 20,0.1,1,0,60,90,90,90,AERONCA  15 Sedan,F 
+AR50   S     P      1     500     500      3        1         0.4        80            59        12500     110      700    # 20,0.1,1,0,60,90,120,120,Aeronca Chief 50,F
+AR5T   S     P      1     500     500      3        1         0.4        80            59        12500     110      700    # 20,0.1,1,0,60,90,120,120,Aeronca Tandem ,F
+AR6T   S     P      1     500     500      3        1         0.4        80            59        12500     110      700    # 20,0.1,1,0,60,90,120,120,Aeronca Grasshopper, Defender,F
+AR65   S     P      1     500     500      3        1         0.4        80            59        12500     110      700    # 20,0.1,1,0,60,90,120,120,Aeronca Super Chief,F 
+BE17   S     P      1     1375    1375     3        1         0.4        80            85        15000     130      1000   # 20,0.1,1,0,70,100,110,110,Beech 17 Staggerwing,F 
+BD4    S     P      1     1375    1375     3        1         0.4        80            85        15000     130      1000   # 20,0.1,1,0,70,100,110,110,Bede BD-4,F
+BL8    S     P      1     1000    1000     3        0.8       0.4        80            50        15000     130      1000   # 20,10.0,1,0,90,110,130,120,Bellanca Decathalon,F 
+C120   S     P      1     500     500      3        1         0.4        80            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,CESSNA  120,F 
+C140   S     P      1     640     640      3        0.8       0.4        80            55        15000     130      650    # 20,0.1,1,0,70,100,100,100,Cessna 140,F 
+C170   S     P      1     690     1000     3        0.8       0.4        80            55        15000     130      1000   # 20,0.1,1,0,80,110,120,120,Cessna 170,F 
+C180   S     P      1     1130    1130     3        0.8       0.4        80            55        15000     130      1200   # 20,10.0,1,0,90,120,130,130,Cessna Skywagon 180,F 
+C185   S     P      1     1000    1000     3        1         0.4        80            55        15000     130      1000   # 20,25.0,1,0,90,120,140,140,Cessna Skywagon 185,F 
+C190   S     P      1     1090    1090     3        0.8       0.4        80            55        15000     130      1100   # 20,0.1,1,0,90,120,130,130,Cessna 190,F 
+C195   S     P      1     1200    1200     3        0.8       0.4        80            55        15000     130      1200   # 20,0.1,1,0,90,120,130,130,Cessna 195,F 
+CAW    S     P      1     500     500      3        1         0.4        80            55        12500     110      600    # 20,0.1,1,0,60,90,90,90,Cessna Model AW,F 
+CH7A   S     P      1     750     750      3        1         0.4        80            55        15000     130      1000   # 20,0.1,1,0,70,120,130,130,Aeronca Champion,F 
+CH7B   S     P      1     1100    1100     3        1         0.4        80            55        15000     130      1000   # 20,20.0,1,0,90,120,130,130,Bellanca Citabria,F 
+CMAS   S     P      1     500     500      3        1         0.4        80            55        12500     110      1000   # 20,0.1,1,0,60,90,110,110,Cessna 165 Airmaster,F 
+COUR   S     P      1     850     1000     3        0.8       0.4        80            55        15000     130      1000   # 20,0.1,1,0,90,120,140,140,Helio Courier,F 
+DG15   S     P      1     500     500      3        1         0.4        80            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Howard DGA-15,F 
+FNKB   S     P      1     500     500      3        1         0.4        80            55        12500     110      620    # 20,0.1,1,0,60,90,90,90,Funk B,F 
+HUSK   S     P      1     500     500      3        0.8       0.4        80            55        15000     130      1000   # 20,0.1,1,0,80,100,110,110,Christen A-1 Husky,F 
+J2     S     P      1     500     500      3        1         0.4        60            55        12500     110      2860   # 20,0.1,1,0,60,90,90,90,PIPER  J-2 Cub,F 
+J3     S     J      1     800     800      3        0.8       0.4        60            55        15000     130      1000   # 20,0.1,1,0,70,80,90,90,Piper J-3 Cub,F 
+J4     S     P      1     500     500      3        1         0.4        60            55        12500     110      2340   # 20,0.1,1,0,60,90,90,90,PIPER  J-4 Cub Coupe,F 
+J5     S     P      1     500     500      3        1         0.4        60            55        12500     110      2200   # 20,0.1,1,0,60,90,90,90,PIPER  J-5 Cub Cruiser,F 
+L5     S     P      1     500     500      3        1         0.4        60            55        12500     110      2340   # 20,0.1,1,0,60,90,90,90,STINSON  L-5 Sentinel,F 
+L8     S     P      1     500     500      3        1         0.4        60            55        12500     110      1500   # 20,0.1,1,0,60,90,90,90,LUSCOMBE  8 Trainer,F 
+M4     S     P      1     1200    1500     3        0.8       0.4        60            55        15000     130      1600   # 20,0.1,1,0,70,100,120,120,Maule Rocket,F 
+M5     S     P      1     1500    1000     3        1         0.8        60            55        15000     130      1500   # 20,1.0,1,0,70,100,120,120,Maule Lunar Rocket,F 
+M6     S     P      1     825     825      3        0.8       0.4        60            55        15000     130      1000   # 20,0.1,1,0,70,100,120,120,MAULE  Super Rocket (M-6),F 
+M7     S     P      1     800     800      3        0.8       0.4        60            55        15000     130      1000   # 20,10.0,1,0,70,100,120,120,Maule M7 Super Rocket,F 
+M8     S     J      1     800     800      3        0.8       0.4        60            55        15000     130      1000   # 20,0.1,1,0,70,100,120,120,Maule M8,F 
+PA11   S     P      1     500     500      3        1         0.4        60            55        12500     110      1820   # 20,0.1,1,0,60,90,90,90,PIPER  PA-11 Cub Special,F 
+PA12   S     P      1     500     500      3        1         0.4        60            55        12500     110      1742   # 20,0.1,1,0,60,90,90,90,PIPER  PA-12 Super Cruiser,F 
+PA14   S     P      1     500     500      3        1         0.4        60            55        12500     110      1742   # 20,0.1,1,0,60,90,90,90,PIPER  PA-14 Family Cruiser,F 
+PA15   S     P      1     500     500      3        1         0.4        60            55        12500     110      3250   # 20,0.1,1,0,60,90,90,90,PIPER  PA-15 Vagabond,F 
+PA16   S     P      1     500     500      3        1         0.4        60            55        12500     110      1300   # 20,0.1,1,0,60,90,90,90,PIPER  PA-16 Clipper,F 
+PA17   S     P      1     500     500      3        1         0.4        60            55        12500     110      1950   # 20,0.1,1,0,60,90,90,90,PIPER  PA-17 Vagabond,F 
+# MDL CLASS ENGINE CAT.  CL.RATE DE.RATE  TRN.RATE  ACC.RATE  DEC.RATE  APP.SPEED   STL.SPEED   MAX.ALT   MAX.VEL  MAX.CLIMB     SIMFAST DATA
+PA18   S     P      1     850     1000     3        1         0.4        80            55        15000     130      1000   # 20,0.1,1,0,70,90,90,90,Piper Super Cub,F 
+PA20   S     P      1     1000    1000     3        1         0.4        80            55        15000     130      1000   # 20,10.0,1,0,80,110,160,160,Piper PA-20 Pacer,F 
+RELI   S     P      1     1000    1000     3        0.8       0.4        80            55        12700     100      1200   # 20,0.1,1,0,60,90,90,90,Stinson Reliant,F 
+RV3    S     P      1     1130    1130     3        1         0.4        80            55        15000     110      1200   # 20,0.1,1,0,60,110,120,120,Van's RV-3,F 
+RV4    S     P      1     1130    1130     3        1         0.4        70            55        15000     110      1200   # 20,5.0,1,0,60,100,140,140,Van's RV-4,F 
+RV6    S     P      1     1130    1130     3        1         0.4        70            55        15000     130      1200   # 20,10.0,1,0,70,100,120,120,Van's RV-6,F 
+RV7    S     P      1     1130    1130     3        1         0.4        70            55        15000     130      1200   # 20,2.0,1,0,70,100,120,120,Van's RV-7,F 
+S10    S     P      1     750     1000     3        0.8       0.4        90            55        15000     110      1000   # 20,0.1,1,0,60,90,120,120,STINSON  10 Voyager,F 
+ST75   S     P      1     500     500      3        1         0.6        70            55        12500     110      1950   # 20,0.1,1,0,60,70,90,90,Boeing Stearman 75,F 
+STLN   S     P      1     1000    1000     3        1         0.4        70            55        15000     140      1200   # 20,0.1,1,0,60,120,120,120,Helio Stallion,F 
+SV4    S     P      1     500     500      3        1         0.4        70            55        12500     110      500    # 20,0.1,1,0,60,90,90,90,Nord Stampe SV4 Biplane,F 
+T18    S     P      1     1000    1000     3        1         0.4        80            55        15000     110      1000   # 20,0.1,1,0,60,110,120,120,Thorp T-18,F 
+TA15   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft 15 Tourist,F 
+TA20   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft 20 ,F 
+TAYA   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft A,F 
+TAYB   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft B,F 
+TAYD   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft D,F 
+TF19   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft 19,F 
+TF21   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft 21,F 
+TF22   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Taylorcraft 22,F 
+WACO   S     P      1     500     500      3        1         0.4        70            55        12500     110      650    # 20,0.1,1,0,60,90,90,90,Waco  (various types),F 
+# Aerobatic aircraft------------------------------------------------------------------------------------------
+E200   S     P      1     1000    1000     3        0.8       0.8        100           80        15000     130      1000   # 21,0.1,3,2,110,130,130,130,Extra 200,F 
+E230   S     P      1     1500    1500     3        0.8       0.8        100           80        15000     130      1500   # 21,0.1,3,2,110,150,160,160,EXTRA  EA-230,F 
+E300   S     P      1     2500    1500     3        1         1          100           70        15000     160      3000   # 21,0.1,3,2,110,150,160,160,Extra 300,F 
+EDGE   S     P      1     800     800      3        2         2          100           70        15000     165      1000   # 21,0.1,3,2,90,120,165,165,Zivko Edge 540,F 
+PTMS   S     P      1     1500    1500     3        0.8       1          85            70        15000     120      2000   # 21,0.1,3,2,70,100,120,120,Pitts Super Stinker  Macho Stinker,F 
+PTS1   S     P      1     1500    1500     3        0.8       1          85            70        15000     120      2000   # 21,0.1,3,2,90,100,120,120,Christen Pitts Special S-1,F 
+PTS2   S     P      1     1500    1500     3        0.8       1          85            70        15000     120      2000   # 21,0.1,3,2,70,100,120,120,Christen Pitts Special S-2,F 
+PTSS   S     P      1     1250    1500     3        1         1          85            50        12650     120      2071   # 21,0.1,3,2,70,100,120,120,Pitts Super Stinker S-1-11,F
+TWST   S     P      1     1250    1500     3        1         1          85            50        12650     120      2071   # 21,0.0,3,2,70,100,120,120,Silence Twister,F 
+# Light Sport------------------------------------------------------------------------------------------
+AAT4   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Gobosh G-700,F 
+C162   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Cessna 162 Skycatcher,F 
+GP1    S     P      1     500     500      3        1         1          70            50        12500     110      1000   # 22,0.1,1,0,60,100,100,100,Jihlavan SkyLeader GP 1,F
+CRUZ   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,CSA PiperSport,F 
+KIS2   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Pulsar Sport 150 KIS TR-1,F
+KR30   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Ekolot Topaz,F  
+LSA    S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Any Light sport,F 
+LSPT   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Any Light sport,F
+SASH   S     P      1     500     500      3        1         1          70            50        12500     140      1000   # 22,0.1,1,0,60,100,100,100,Shark Aircraft Shark ,F
+SLG2   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Airplane Factory Sling 2,F
+SLG4   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Airplane Factory Sling 4,F
+PIT4   S     P      1     500     500      3        1         1          70            50        12500     100      1000   # 22,0.1,1,0,60,100,100,100,Pipistrel Taurus Electro G4,F
+# UAV Prop------------------------------------------------------------------------------------------
+Q9     S     P      2     2000    2000     2.5      0.8       0.7         100           80        25000     160      2000   # 23,0.1,3,1,130,160,160,160,General Atomics MQ9 Reaper Altair,F 
+MQ9    S     P      2     2000    2000     2.5      0.8       0.7         100           80        25000     160      2000   # 23,0.1,3,1,130,160,160,160,General Atomics MQ9 Reaper Altair,F 
+
+Q1     S     P      2     2000    2000     2.5      0.8       0.7         100           54        25000     120      1742   # 23,0.1,3,1,100,120,120,120,General Atomic MQ1 Predator,F 
+# UAV Jet------------------------------------------------------------------------------------------
+Q4     S     J      3     4000    3000     2.5      1         1          130           100       41000     400      4000   # 24,0.1,5,2,170,250,400,250, Grumman Global Hawk,F 
+# Unknown------------------------------------------------------------------------------------------
+UNKN   S     P      1     500     500      3        1         1          90            50        12500     100      1000   # 14,0.1,1,0,60,100,100,100,Unknown type,F 
+# Defunct types  will not be assigned by Simfast-----------------------
+# The following entries are added for historical purposes to ensure existing scenarios still function
+A140   L     P      3     3000    3000     3         1.5       1.0       100          90         35000     300      3000
+A3     L     J      3     5000    6000     3         1.5       1.0       130         100         33000     325      1950 
+A225   H     J      3     3500    3500     3         1.5       1.0       130         100         45000     483      3250
+A300   H     J      3     3500    3500     3         1.5       1.0       130         100         45000     483      3250 
+A329   H     J      3     3500    3500     3         1.5       1.0       130         100         45000     483      3250
+A330   H     J      3     3500    3500     3         1.5       1.0       130         100         45000     483      3250 
+A340   H     J      3     3500    3500     3         1.5       1.0       130         107         45000     499      3250 
+A355   H     J      3     2500    2500     3         1.5       1.0       140         120         43000     652      3500
+A37    S     J      3     3370    3000     3         1.5       1.0       130         120         45000     487      3250 
+A380   H     J      3     2500    2500     3         1.5       1.0       140         120         43000     652      3500
+A50    H     J      3     2500    2500     3         1.5       1.0       140         120         43000     652      3500
+A500   S     P      2     1250    1700     3         1.0       1.0       120          70         21000     250      1700
+A7     L     J      3     8000    6000     3         2.5       2.0       140         120         45000     640      5200 
+A748   L     P      3     2500    2000     3         1.5       1.0       105          59         21000     195      1742 
+AC21   L     J      3     3000    1500     3         1.5       1.5       140          88         45000     450      3900 
+AC6L   S     P      2     1250    1250     3         1.5       1.0       105          59         21000     195      1742 
+AC6T   S     P      3     2350    2500     3         1.0       1.0       130          77         33000     285      3250 
+AESP   S     P      2     1800    1500     3         1.5       1.0       105          59         21000     195      1742 
+AG5B   S     P      2     1400    1500     3         1.0       1.0       110          74         21900     201      1820 
+AIRD   S     P      1      600     800     3         1.0       1.0        90          75         15000     140      1200
+AN22   H     J      3     1800    1800     3         1.0       1.0       110          90         40000     500      3600
+AN70   H     J      3     1800    1800     3         1.0       1.0       120         100         40000     420      2300
+AN72   L     J      3     1800    1800     3         1.0       1.0       110         100         39000     380      2200
+AN8    L     P      3     1800    1800     3         1.5       1.0       110         100         21000     320      2500 
+ARVA   S     P      3     1300    1000     3         1.5       1.0       105          59         21000     195      1742 
+#AS32   L     P      1     1250    1500     3         1.0       0.9       120          97         25000     275      2600  #already in use, valid ICAO  type
+ASPR   S     J      3     4000    3500     3         1.5       1.0       105          59         21000     195      1742 
+AT24   L     P      3     2000    2000     3         1.0       0.9       120          97         25000     275      2600 
+AT42   L     P      3     2000    2000     3         1.0       0.9       120          97         25000     275      2600 
+ATLA   L     J      3     1800    1200     3         1.0       1.0       110          90         35000     500      2600
+ATP    L     P      3     3000    3000     3         1.0       0.9       120          97         25000     275      2600 
+B12    S     P      1     1420    1420     3         1.0       0.9       120          97         25000     275      2600 
+#B2     H     J      3     3000    3000     3         1.5       1.0       140         120         45000     499      3250  #already in use, valid ICAO  type
+B305   S     P      1     1300    1300     3         1.0       0.9       120          97         25000     275      2600 
+B707   H     J      3     3500    3500     3         1.5       1.0       130         120         45000     500      3900
+B720   L     P      3     3000    3000     3         1.0       0.9       120          97         25000     275      2600 
+B72Q   L     J      3     4500    4500     3         1.5       1.0       130         104         36000     500      3900 
+B731   L     J      3     3000    3000     3         1.5       1.0       130         100         35000     462      3250 
+B73S   L     J      3     3000    3000     3         1.5       1.0       130         100         45000     490      3250 
+B74A   H     J      3     3000    3000     3         1.5       1.0       130         107         45000     499      3250 
+B74B   H     J      3     3000    3000     3         1.5       1.0       130         107         45000     499      3250 
+B74D   H     J      3     3000    3000     3         1.5       1.0       130         107         45000     499      3250 
+B74F   H     J      3     3000    3000     3         1.5       1.0       130         107         45000     499      3250 
+B74R   H     J      3     3000    3000     3         1.5       1.0       130         107         45000     499      3250 
+B757   L     J      3     2000    2200     3         1.5       1.0       130         100         45000     500      2600 
+B767   H     J      3     2500    2600     3         1.5       1.0       130         100         45000     483      3250 
+B770   H     J      3     2500    2500     3         1.5       1.0       130         100         45000     483      3250
+B777   H     J      3     2500    2500     3         1.5       1.0       130         110         45000     500      3250
+BA46   L     J      3     3500    3500     3         1.5       1.0       130          99         31000     419      3120 
+BE02   L     P      3     1600    2000     3         1.0       0.9       120          85         30000     262      2080 
+BE90   S     P      3     2000    2400     3         1.0       0.9       120          94         31000     279      2600 
+BELF   S     P      3     1400    1400     3         1.5       1.0       130         120         45000     350      3250
+BL26   S     P      2     1210    1210     3         1.0       1.0       105          68         20000     180      1575 
+BRB2   S     P      1     1400    1400     3         1.0       0.9       120          97         25000     275      2600 
+C12    S     P      1     2000    2500     3         1.5       1.0       130          85         26000     260      2600 
+C123   L     P      3      890    1000     3         1.5       1.0       130         100         33000     325      1950 
+C125   L     P      3     2690    3000     3         1.0       1.0       120          70         22750     187      1391
+C135   H     J      3     2000    2000     3         1.5       1.0       130         120         45000     500      2600 
+C141   H     J      3     3500    3000     3         1.5       1.0       130         120         45000     350      3250 
+C15    L     J      3     4000    4000     3         1.5       1.0       130         120         45000     350      3250 
+C17A   H     J      3     4000    4000     3         1.5       1.0       130         120         45000     350      3250 
+C17H   H     J      3     4000    4000     3         1.5       1.0       130         120         45000     350      3250 
+C21    L     J      3     3000    3000     3         1.5       1.0       130          96         45000     471      3900 
+C401   S     P      1     1800    1800     3         1.0       1.0       120          69         26200     164      2340 
+C5A    H     J      3     2500    2000     3         1.0       1.0       130          83         26000     217      3380
+C97    L     P      3     2500    3000     3         1.0       1.0       130          83         26000     217      3380 
+CARJ   L     J      3     3000    3000     3         1.5       1.0       105          90         35000     264      2600 
+CDC6   S     P      2     1250    1500     3         1.0       1.0       120          70         20000     217      1625
+CH62   S     P      2      780    1000     3         1.0       1.0       130          83         26000     217      3380
+CL44   L     P      3     1200    1500     3         1.0       1.0       150         100         30000     349      1560 
+CV4G   L     P      3     1500    1500     3         1.5       1.0       105          90         35000     264      2600
+COMT   L     J      3     2900    2000     3         1.5       1.0       105          90         35000     264      2600 
+CONC   H     J      3     5000    5000     3         1.5       1.0       105          90         35000     264      2600 
+CONI   L     P      3     1700    1700     3         1.5       1.0       105          90         35000     264      2600 
+CP20   S     P      1     1500    2000     3         1.5       1.0       105          90         35000     264      2600 
+CP21   S     P      1     1500    2000     3         1.5       1.0       105          90         35000     264      2600
+CRJ3   L     J      3     3000    3000     3         1.5       1.0       135         110         35000     264      2600 
+CV58   L     P      3     1500    1500     3         1.5       1.0       130         120         17000     297      1950 
+CV99   L     J      3     2500    2500     3         1.0       0.9       120          97         25000     275      2600 
+D140   S     P      1     1500    2000     3         1.5       1.0       105          90         35000     264      2600
+D28D   S     P      2     1000    1500     3         1.5       1.5       140         103         45000     454      2990 
+D28T   S     P      2     1500    1500     3         1.5       1.5       140         103         45000     454      2990 
+DA01   L     J      3     2300    1600     3         1.5       1.5       140         103         45000     454      2990 
+DA02   L     J      3     2000    2400     3         1.5       1.5       130         110         42000     460      2600 
+DA90   L     J      3     2400    1700     4         2.0       2.0       140         102         49999     480      3120 
+DC4    L     P      3     2300    2300     3         2.0       2.0       140         102         49999     480      3120 
+DC6    L     P      3     1000    1000     3         1.5       1.0       130         100         39000     490      2600 
+DC8    H     J      3     4000    4000     3         1.5       1.0       130         120         35000     500      2600 
+DC8Q   H     J      3     4000    4000     3         1.0       1.0       120          70         22750     187      1391 
+DC8S   H     J      3     4000    4000     3         1.5       1.0       130         120         35000     500      2600
+DC9Q   L     J      3     3000    3000     3         1.5       1.0       130         100         39000     490      2600
+DH6A   S     P      2     1600    1800     3         1.0       0.9       120          74         27000     182      2080 
+DH6C   S     P      2     1600    1600     3         1.0       0.9       120          80         27000     210      2080 
+DH7C   L     P      3     1600    1600     3         1.5       1.0       130         100         21000     231      2080 
+DH8    L     P      3     1500    1500     3         1.0       1.0       135          72         25000     271      1950 
+DHC7   L     P      3     4000    4000     3         1.5       1.0       130         120         31000     500      3250 
+E121   S     P      3     2300    2300     3         1.0       1.0       120          70         22750     187      1391
+E3     H     J      3     3500    4000     3         1.5       1.0       130         120         31000     500      3250
+E3A    H     J      3     3500    4000     3         1.5       1.0       130         120         31000     500      3250
+E4     H     J      3     3500    4000     3         1.5       1.0       130         120         31000     500      3250
+E500   S     P      1     1800    1800     3         1.5       1.0       130         120         31000     500      3250 
+#E767   H     J      3     2500    2500     3         1.0       0.9       120          80         29600     183      1495  #already in use, valid ICAO  type
+EA30   H     J      3     3500    4000     3         1.5       1.0       130         120         31000     500      3250
+EA31   H     J      3     3500    4000     3         1.5       1.0       130         120         31000     500      3250
+EA33   H     J      3     3500    4000     3         1.5       1.0       130         120         31000     500      3250
+EA34   H     J      3     3500    4000     3         1.5       1.0       130         120         31000     500      3250
+F104   L     J      3     5000    4000     3         1.5       1.0       130         120         31000     500      3250 
+F111   L     J      3     5000    5000     3         1.5       1.0       130         100         39000     490      2600 
+F117   L     J      3     6000    5000     5         2.5       2.0       130         110         45000     700      7000
+F14    L     J      3     6000    4000     5         2.5       2.0       150         130         45000     500      5200 
+F14A   L     J      3     6000    7000     5         2.5       2.0       150         130         60000     800      6200 
+F16X   L     J      3     8000    5000     3         2.5       2.0       140         110         50000     800      5200 
+F3F    S     P      1     2500    2500     3         1.5       1.0       130         100         33600     302      2340
+F50    L     P      3     3500    3500     3         1.5       1.0       130         100         39000     490      2600 
+F60    L     P      3     3500    3500     3         1.5       1.0       130         120         31000     500      3250 
+F600   S     P      2     2100    2100     3         1.5       1.0       130         120         31000     500      3250 
+F9F    S     J      3     3370    3000     3         1.5       1.0       130         120         45000     487      3250
+FK27   L     P      3     2200    2500     3         1.5       1.0       130          98         29500     262      2860 
+FREL   L     P      1     1200    1500     3         1.5       1.0       130         120         31000     500      3250 
+G2     L     J      3     4000    4000     3         1.5       1.5       140          90         43000     440      5200 
+G3     L     J      3     2400    3000     3         1.5       1.0       140         121         45000     500      3120 
+G73    S     P      3     1600    1600     3         1.5       1.0       130         120         31000     500      3250 
+G73T   S     P      3     1800    1600     3         1.5       1.0       130         120         31000     500      3250 
+G96    S     P      3     1800    1500     3         1.5       1.0       120         100         27000     325      2300
+#GA7    S     P      2     1600    1500     3         1.5       1.0       130         120         31000     500      3250  #already in use, valid ICAO  type
+GAZL   S     P      1     1620    1620     3         1.5       1.0       130         100         39000     490      2600 
+H2     L     P      1     2400    2400     3         1.5       1.0       130         120         31000     500      3250 
+H43B   L     P      1     2000    2000     3         1.5       1.0       130         120         31000     500      3250 
+HC5    H     J      3     2500    2000     3         1.0       1.0       130          83         26000     217      3380
+HF20   S     J      3     4500    4500     3         1.5       1.0       130         100         33600     302      2340 
+I114   L     P      3     1800    1300     2         1.5       1.0       110          90         25000     300      2300
+IL14   S     P      3     1300    1300     3         1.5       1.0       130         100         41000     500      2200
+IL18   L     P      3     1500    1300     3         1.0       1.0       110          90         27000     425      2200
+IL28   L     J      3     1800    1500     3         1.0       1.0       120         100         33000     500      2600
+IL38   L     J      3     1800    1500     3         1.0       1.0       120         100         33000     500      2600
+IL62   H     J      3     3500    2500     3         1.5       1.0       130          98         29500     262      2860 
+IL86   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+J728   L     J      3     1700    2000     3         1.5       1.0       120         100         33000     500      2200
+JAGR   s     J      3     1800    1200     3         1.0       1.0       110          90         35000     500      2600
+JPRO   S     J      3     2500    2000     3         1.5       1.0       130         100         39000     490      2600
+JS1    S     P      3     2200    2200     3         1.5       1.0       130         100         33600     302      2340 
+JS3    S     P      3     2200    2300     3         1.5       1.5       140          90         43000     440      5200 
+K135   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+K35    H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+K35A   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250 
+K35L   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+KC10   H     J      3     2400    2000     3         1.5       1.0       130         100         39000     490      2600 
+KC35   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+KE3    H     J      3     3500    3500     3         1.5       1.0       165         150         42000     500      3250 
+KE35   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+KH35   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+KR35   H     J      3     2500    3000     3         1.5       1.0       130         120         45000     500      3250
+LAMA   S     P      1     1000    1000     3         1.5       1.0       130         120         45000     500      3250 
+M32    S     J      3     2250    3000     3         1.5       1.0       105          90         35000     300      2600
+M339   S     J      3     2250    3000     3         1.5       1.0       105          90         35000     300      2600
+M404   L     P      3     1600    1500     3         1.5       1.0       165         150         42000     500      3250 
+MD10   H     J      3     2400    2000     3         1.5       1.0       130         100         39000     490      2600
+MD80   L     J      3     3500    3000     3         1.5       1.0       130         100         31000     500      3250 
+MD92   L     J      3     3800    3500     3         1.0       0.9       130         110         37000     520      3300 
+ME08   S     P      3      400     500     3         1.0       1.0       125         100         35000     313      1950 
+MF17   S     P      1      650    1000     3         1.0       0.9        85          50         16800     161       845
+MO20   S     P      2     1000    1000     3         1.0       0.9       100          55         19500     175      1300 
+MRF1   S     J      3     1800    1200     3         1.0       1.0       110          90         35000     500      2600
+MT2    S     J      3     3500    4000     3         1.0       0.9       100          55         19500     175      1300
+MU3    L     J      2     1700    2000     3         1.0       1.0       120          77         41000     434      2210 
+N110   S     P      3      400     500     3         1.0       1.0       125         100         35000     313      1950
+N120   S     P      3      400     500     3         1.0       1.0       125         100         35000     313      1950
+N1M    L     J      3     2200    2200     3         1.5       1.0       110         100         41000     520      3000
+N260   S     P      3     2500    2000     3         1.0       1.0       125         100         35000     313      1950 
+N262   S     P      3     2500    2000     3         1.0       1.0       120          77         41000     434      2210 
+N265   L     J      3     3000    3500     3         1.5       1.0       120         110         45000     500      3900 
+N320   S     P      3      400     500     3         1.0       1.0       125         100         35000     313      1950
+N340   S     P      3      400     500     3         1.0       1.0       125         100         35000     313      1950
+ND26   L     P      3     1500    1500     3         1.0       0.9       120          90         27000     243      1950 
+NOMA   S     P      2     1300    1100     3         1.0       0.9       100          55         19500     175      1300 
+NORA   L     P      3     1500    1500     3         1.0       1.0       125         100         35000     313      1950 
+NORS   S     P      1      700    1000     3         1.0       1.0       120          77         41000     434      2210 
+OSCR   S     P      1      800    1000     3         1.5       1.0       165         150         42000     500      3250 
+P148   S     P      1     1250    1500     3         1.5       1.0       140         121         45000     200      3120
+P149   S     P      1     1250    1500     3         1.5       1.0       140         121         45000     175      3120
+P166   S     P      2     1350    1500     3         1.5       1.0       130         120         28300     300      2860 
+P57    S     P      1      800    1000     3         1.5       1.0       165         150         42000     300      3250
+P61    S     P      3     2500    2500     3         1.5       1.0       130         100         33600     375      2340
+P808   S     J      3     4000    3500     3         1.0       1.0       120          77         41000     434      2210 
+PA28   S     P      2     750     1000     3         1.0       0.9       85           56         16400     160       975 
+PA60   S     P      2     1530    1500     3         1.0       0.9       120          80         30000     257      1989 
+PARO   S     P      2     900     1000     3         1.5       1.0       100          60         20000     198      1170
+PASE   S     P      2     1300    1300     3         1.5       1.0       105          66         25000     195      1690 
+PAYE   S     P      2     1800    2000     3         1.5       1.0       110          90         35900     313      2340 
+PAZT   S     P      2     1600    1500     3         1.5       1.0       105          80         24000     210      2080 
+#PC12   S     P      1     1900    1900     3         1.5       1.0       130         100         33000     325      1950  #already in use, valid ICAO  type
+PILL   S     P      1      750    1000     3         1.5       1.0       130         120         45000     500      2600 
+PP2    S     P      1      600     600     3         1.5       1.0       130          85         26000     260      2600
+PP3    S     P      1      600     600     3         1.5       1.0       130          85         26000     260      2600
+R100   S     P      1      650    1000     3         1.0       0.9        85          50         16800     161       845
+R135   H     J      3     3000    3000     3         1.5       1.0       130          85         26000     260      2600 
+R200   S     P      1      650    1000     3         1.0       0.9        85          50         16800     161       845
+R2TH   S     J      3     2300    1600     3         1.5       1.5       140         103         45000     454      2990
+R300   S     P      1      650    1000     3         1.0       0.9        85          50         16800     161       845
+R721   L     J      3     4300    4300     3         1.5       1.0       130         100         45000     490      3250 
+R722   L     J      3     4300    4300     3         1.5       1.0       130         100         45000     490      3250 
+R90F   S     P      1     1000    1000     3         1.5       1.0       130         120         45000     350      3250 
+R90T   S     P      1     1100    1100     3         1.5       1.0       130          85         26000     260      2600 
+RJ1H   L     J      3     2200    2200     3         1.5       1.0       110         100         41000     520      3000
+RJ70   L     J      3     2200    2200     3         1.5       1.0       110         100         41000     520      3000
+RJ85   L     J      3     2200    2200     3         1.5       1.0       110         100         41000     520      3000
+S210   L     J      3     2300    2000     3         1.5       1.0       130         120         45000     350      3250 
+S223   S     P      1     1100    1100     3         1.0       1.0       110          90         18000     150      2500
+S360   S     P      1     1400    1500     3         1.0       1.0        85          50         14700     130       975 
+S51    L     P      1     1000    1000     3         1.5       1.0       130          85         26000     260      2600 
+S52    L     P      1      950    1000     3         1.5       1.0       130         100         33000     325      1950 
+S55P   S     P      1      800    1000     3         1.5       1.0       130         120         45000     350      3250 
+S58P   L     P      1     1120    1120     3         1.5       1.0       130          85         26000     260      2600 
+S62    S     P      1     1020    1000     3         1.5       1.0       130         120         45000     500      2600 
+SB05   S     J      3     2000    2000     3         1.0       1.0       120          85         23000     350      2500
+SB29   S     J      3     2000    2000     3         1.0       1.0       120          85         23000     350      2500
+SB32   S     J      3     2000    2000     3         1.0       1.0       120          85         23000     350      2500
+SB37   S     J      3     2000    2000     3         1.0       1.0       120          85         23000     350      2500
+SD30   L     P      3     1000    1300     3         1.0       0.9       120         105         15000     210      1300 
+SHD3   L     P      3     1000    1000     3         1.0       0.9       120          80         15000     210      1300 
+SHD6   L     P      3      800    1000     3         1.5       1.0       130         120         15000     210      1040 
+SNJ6   S     P      1      800     800     3         1.5       1.0       130          85         26000     260      2600 
+SR71   L     J      3     8000    6000     3         3.0       1.0       160         130         80000     900      8000
+T144   H     J      3     5000    5000     3         1.5       1.0       105          90         35000     264      2600
+T160   H     J      3     3000    5000     3         1.5       1.0       130         120         45000     500      3900
+T250   S     P      1     1100    1100     3         1.0       1.0        90          75         21000     130      2600
+T37    S     J      3     3000    3000     3         1.5       1.0       120         100         33000     309      2600 
+T39    L     J      3     2500    2700     3         1.5       1.0       120         110         45000     400      3250 
+TCOU   S     P      2     1250    1500     3         1.5       1.0       130         120         45000     350      3250 
+TR1    L     J      3     6000    6000     3         1.5       1.0       130         100         33000     325      1950 
+TRID   L     J      3     3000    3000     3         1.5       1.0       130         100         33000     325      1950 
+TU95   H     J      3     1600    1600     3         1.0       1.0       110         100         39000     500      2000
+U21    S     P      2     2000    2000     3         1.5       1.0       130         120         45000     350      3250 
+U22    S     P      1     2000    2000     3         1.5       1.0       130         120         45000     350      3250
+UH12   S     P      1     1500    1500     3         1.5       1.0       130         120         45000     350      3250 
+VALI   S     P      1      600     750     3         1.5       1.0       130          85         26000     260      2600 
+VECT   S     P      3     1900    1900     3         1.5       1.0       100          90         33000     425      2200
+VF14   L     J      3     3100    3000     3         1.5       1.0       130         100         33000     325      1950 
+VISC   L     P      3     1200    1500     3         1.0       1.0       130         105         27000     300      3055 
+WG30   S     P      1     1200    1200     3         1.0       1.0       130          20         18000     150      1800
+YC17   H     J      3     4000    4000     3         1.5       1.0       130         120         45000     350      3250
+YS11   L     P      3     1500    1500     3         1.0       1.0       130         105         27000     300      3055
